@@ -1,0 +1,12 @@
+@tailwind components;
+@tailwind base;
+@tailwind utilities;
+
+@font-face {
+  font-family: "DMSans";
+  src: url(./assets/fonts/DMSans-VariableFont_opszwght.ttf);
+}
+
+* {
+  font-family: "DMSans";
+}
