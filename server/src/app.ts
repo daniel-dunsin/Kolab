@@ -4,6 +4,7 @@ import cors from "cors";
 import helmet from "helmet";
 import setupServer from "./entry/server.setup";
 import { errorHandler, routeNotFound } from "./helpers/error";
+import routes from "./routes";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use(helmet());
 app.get("/healthcheck", (req, res, next) => {
   res.status(200).json({ message: "App is working correctly" });
 });
+app.use("/api/v1/auth", routes.auth);
 
 app.use(errorHandler);
 app.use("*", routeNotFound);
