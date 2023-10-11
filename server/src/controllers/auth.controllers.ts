@@ -18,7 +18,7 @@ const register = async (
     });
   } catch (error: any) {
     if (error.code === 11000) {
-      throw new BadRequestError("A user with this email already exists");
+      return next(new BadRequestError("A user with this email already exists"));
     }
 
     return next(error);

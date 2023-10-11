@@ -4,6 +4,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./store";
+import Preloader from "./components/UI/Preloader";
+import ErrorModal from "./components/UI/ErrorModal";
 
 function App() {
   const queryClient = new QueryClient();
@@ -11,6 +13,8 @@ function App() {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
+        <Preloader />
+        <ErrorModal />
         <RouterProvider router={routes} />
       </QueryClientProvider>
     </Provider>
