@@ -3,14 +3,14 @@ import { Axios, AxiosError } from "axios";
 import thunk from "redux-thunk";
 import { closePreloader, openErrorModal } from "../store/handlersSlice";
 
-const errorResolver = (
-  thunkApi: GetThunkAPI<{}>,
-  error: AxiosError<any> | string
-) => {
+const errorResolver = (thunkApi: GetThunkAPI<{}>, error: any) => {
   const dispatch = thunkApi.dispatch;
 
-  error = <string>(error as AxiosError<any>).response?.data.error;
-
+  if (error?.response?.data?.error?.errors) {
+    error = error.response.data.error.errors?.[0];
+  } else {
+    error = <string>error.response?.data.error;
+  }
   dispatch(openErrorModal(error));
   dispatch(closePreloader());
 

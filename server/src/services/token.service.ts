@@ -29,7 +29,10 @@ const updateToken = async (
   query: FilterQuery<IToken>,
   update: UpdateQuery<IToken>
 ): Promise<IToken> => {
-  const token = await Token.findOneAndUpdate(query, update);
+  const token = await Token.findOneAndUpdate(query, update, {
+    new: true,
+    runValidators: true,
+  });
 
   if (!token) throw new NotFoundError("Token does not exist");
 

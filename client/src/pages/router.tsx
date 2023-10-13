@@ -1,8 +1,9 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./Home";
-import SignUp from "./SignUp";
-import Login from "./Login";
+import SignUp from "./Auth/SignUp";
+import Login from "./Auth/Login";
+import VerifyEmail from "./Auth/VerifyEmail";
 
 const routes = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const routes = createBrowserRouter([
   {
     path: "/login",
     element: <Login />,
+  },
+  {
+    path: "/verify-account/:token",
+    element: <VerifyEmail />,
   },
 ]);
 

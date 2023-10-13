@@ -48,12 +48,34 @@ export const signUpUser: any = createAsyncThunk(
   }
 );
 
+export const resendVerificationEmail: any = createAsyncThunk(
+  "authSlice/resendVerificationEmail",
+  async (email: string, thunkApi) => {
+    const dispatch = thunkApi.dispatch;
+
+    dispatch(openPreloader("Resending email"));
+
+    try {
+      const response = await httpInstance.post(
+        "/auth/verify-account/resend-email",
+        {
+          email,
+        }
+      );
+
+      dispatch(closePreloader());
+
+      return response?.data;
+    } catch (error: any) {
+      return errorResolver(thunkApi, error);
+    }
+  }
+);
+
 export const verifyAccount: any = createAsyncThunk(
   "authSlice/verifyAccount",
   async (token: string, thunkApi) => {
     const dispatch = thunkApi.dispatch;
-
-    dispatch(openPreloader("Verifying account"));
 
     try {
       const response = await httpInstance.post("/auth/verify-account", {

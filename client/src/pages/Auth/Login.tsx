@@ -1,10 +1,34 @@
-import React from "react";
-import Button from "../components/UI/Button";
-import FormRow from "../components/UI/FormRow";
+import React, { ChangeEvent, useState } from "react";
+import Button from "../../components/UI/Button";
+import FormRow from "../../components/UI/FormRow";
 import { Link } from "react-router-dom";
-import Navbar from "../components/Home/Navbar";
+import Navbar from "../../components/Home/Navbar";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../services/thunks/auth.thunk";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const dispatch = useDispatch();
+
+  const submit = async (e: ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const data = await dispatch(loginUser({ email, password }));
+
+    if (!data?.error) {
+      await Swal.fire({
+        title: "Login",
+        text: "You have successfully logged in to your account",
+        timer: 1000,
+        showConfirmButton: false,
+        icon: "success",
+      });
+    }
+  };
+
   return (
     <section className="h-screen flex flex-col">
       <Navbar />
@@ -26,7 +50,7 @@ const Login = () => {
             </p>
           </header>
 
-          <form action="">
+          <form action="" onSubmit={submit}>
             <div className="grid grid-cols-1 gap-[1rem] mt-8 mb-7">
               <FormRow
                 label="Email*"
@@ -34,6 +58,8 @@ const Login = () => {
                 type="email"
                 name="email"
                 required={true}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
 
               <FormRow
@@ -42,6 +68,8 @@ const Login = () => {
                 type="password"
                 name="password"
                 required={true}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
 

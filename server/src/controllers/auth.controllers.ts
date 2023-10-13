@@ -25,6 +25,23 @@ const register = async (
   }
 };
 
+const resendVerificationEmail = async (
+  req: Request<{}, {}, { email: string }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email } = req.body;
+
+    await authService.resendVerificationEmail(email);
+
+    res.status(200).json({ message: "verification email sent" });
+    ``;
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const verifyAccount = async (
   req: Request<{}, {}, { token: string }>,
   res: Response,
@@ -41,8 +58,29 @@ const verifyAccount = async (
   }
 };
 
+const signIn = async (
+  req: Request<{}, {}, Partial<IAuth>>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { email, password } = req.body;
+
+    const data = await authService.signIn({ email, password });
+
+    res.status(200).json({
+      message: "Log in successful",
+      data: { user: data.user, accessToken: data.token },
+    });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const authControllers = {
   verifyAccount,
   register,
+  signIn,
+  resendVerificationEmail,
 };
 export default authControllers;
