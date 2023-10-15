@@ -1,4 +1,5 @@
-import { Types } from "mongoose";
+import { ObjectId, Types } from "mongoose";
+import { IWorkspace } from "./workspace.interface";
 
 export enum ITokenTypes {
   verifyAccountToken = "verifyAccountToken",
@@ -15,6 +16,7 @@ export interface IUser {
   lastName: string;
   profilePicture: string;
   email: string;
+  workspaces: string[] | ObjectId[] | IWorkspace[];
 }
 
 export interface IAuth {
