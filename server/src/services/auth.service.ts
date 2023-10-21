@@ -10,7 +10,7 @@ import { IAuth, ITokenTypes, IUser } from "../interfaces/models/user.interface";
 import { ILoginRes } from "../interfaces/responses/auth.response";
 import Auth from "../models/auth.model";
 import User from "../models/user.model";
-import { verifyEmailHtml } from "../templates/verificationEmail";
+import { verifyEmailHtml } from "../templates/verification-email";
 import tokenService from "./token.service";
 
 const createAccount = async (body: Partial<IUser & IAuth>) => {

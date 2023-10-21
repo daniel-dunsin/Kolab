@@ -7,7 +7,10 @@ const WorkspaceSchema = new mongoose.Schema<IWorkspace>({
   description: { type: String, required: true },
   picture: { type: String, required: false },
   director: { type: Types.ObjectId, required: true, ref: Collections.user },
-  users: { type: [{ type: Types.ObjectId, ref: Collections.user }] },
+  users: {
+    type: [{ type: Types.ObjectId, ref: Collections.user }],
+    default: [],
+  },
 });
 
 const Workspace = mongoose.model(Collections.workspaces, WorkspaceSchema);

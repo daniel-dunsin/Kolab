@@ -5,6 +5,7 @@ import helmet from "helmet";
 import setupServer from "./entry/server.setup";
 import { errorHandler, routeNotFound } from "./helpers/error";
 import routes from "./routes";
+import loggerMiddleware from "./middlewares/logger.middleware";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(helmet());
+app.use(loggerMiddleware);
 
 // routes
 app.get("/healthcheck", (req, res, next) => {

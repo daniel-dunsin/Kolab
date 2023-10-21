@@ -1,10 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Logo = () => {
+  const location = useLocation();
+
   return (
     <Link
-      to={"/"}
+      to={location.pathname.includes("dashboard") ? "/dashboard" : "/"}
       title="Back to home"
       className="text-[1.5rem] font-bold text-primary cursor-pointer"
     >
