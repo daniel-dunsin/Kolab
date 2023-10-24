@@ -9,3 +9,11 @@ export interface IWorkspace {
   users: Array<string | Types.ObjectId | IUser>;
   _id: string;
 }
+
+export interface IWorkspaceInvitation {
+  workspace: string | Types.ObjectId | IWorkspace;
+  inviteeEmail: string;
+  _id: string;
+  createdAt: Date;
+  updatedAt: Date;
+}

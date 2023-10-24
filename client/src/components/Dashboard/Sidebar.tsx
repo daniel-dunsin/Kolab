@@ -4,6 +4,7 @@ import { Squash } from "hamburger-react";
 import { MdDashboard } from "react-icons/md";
 import { BsGear } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
+import Workspaces from "./UI/Workspaces";
 
 interface Props {
   isOpened: boolean;
@@ -28,7 +29,7 @@ const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
 
   return (
     <aside
-      className={`w-full lg:!w-[300px] lg:!translate-x-0 transition-all duration-300  fixed top-0 left-0 h-screen max-h-screen overflow-y-scroll bg-white  z-[4] px-[1rem] pt-[2rem] pb-[1rem] ${
+      className={`w-full lg:!w-[300px] flex flex-col justify-between lg:!translate-x-0 transition-all duration-300  fixed top-0 left-0 h-screen max-h-screen overflow-y-scroll bg-white  z-[4] px-[1rem] pt-[2rem] pb-[1rem] ${
         isOpened ? "translate-x-0" : "-translate-x-[100%]"
       }`}
     >
@@ -40,7 +41,7 @@ const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
         </span>
       </header>
 
-      <div className="mt-[2rem] flex flex-col gap-y-[.7rem]">
+      <div className="mt-[2rem] flex flex-col gap-y-[.7rem] max-h-[65vh] h-[65vh] overflow-y-scroll">
         {links?.map((link, index) => {
           return (
             <Link
@@ -57,6 +58,8 @@ const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
           );
         })}
       </div>
+
+      <Workspaces />
     </aside>
   );
 };

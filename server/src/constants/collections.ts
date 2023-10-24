@@ -3,4 +3,5 @@ export enum Collections {
   auth = "auth",
   token = "token",
   workspaces = "workspaces",
+  workspace_invitation = "workspace_invitation",
 }

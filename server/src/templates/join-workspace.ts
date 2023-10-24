@@ -1,7 +1,7 @@
 import { IUser } from "../interfaces/models/user.interface";
 import { IWorkspace } from "../interfaces/models/workspace.interface";
 
-const joinWorkspaceHTML = (
+export const joinWorkspaceHTML = (
   name: string,
   workspace: IWorkspace,
   link: string
@@ -79,7 +79,7 @@ const joinWorkspaceHTML = (
       <body>
         <section class="container">
           <h1>Workspace Invite</h1>
-          <h2>Hello there, ${name} 👋🏼</h2>
+          <h2>Hello there${name ? `, ${name} ` : " "}👋🏼</h2>
           <p>
             You have been invited by ${
               (workspace.director as IUser).firstName

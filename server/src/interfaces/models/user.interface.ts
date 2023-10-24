@@ -16,6 +16,7 @@ export interface IUser {
   lastName: string;
   profilePicture: string;
   email: string;
+  workspaces: IWorkspace[] | string[] | Types.ObjectId[];
 }
 
 export interface IAuth {

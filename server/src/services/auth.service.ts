@@ -97,7 +97,9 @@ const signIn = async (body: Partial<IAuth>): Promise<ILoginRes> => {
 
   if (!authInDb.isVerified) throw new ForbiddenError("Account is not verified");
 
-  const user = <IUser>await User.findOne<IUser>({ email: authInDb.email });
+  const user = <IUser>(
+    await User.findOne<IUser>({ email: authInDb.email }).populate("workspaces")
+  );
 
   const isPasswordMatch = await authInDb.confirmPassword(password);
 
