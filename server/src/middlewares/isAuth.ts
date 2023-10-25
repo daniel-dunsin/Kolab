@@ -1,4 +1,4 @@
-import { NextFunction, Request } from "express";
+import { NextFunction, Request, Response } from "express";
 import { UnAuthorizedError } from "../constants/errors";
 import JwtHelper from "../helpers/jwt";
 

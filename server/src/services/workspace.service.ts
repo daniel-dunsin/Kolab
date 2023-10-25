@@ -25,21 +25,17 @@ const createWorkspace = async (
     director,
   });
 
-  await User.findByIdAndUpdate(director, {
-    $push: { workspaces: workspace._id },
-  });
-
   return workspace;
 };
 
 const findMultiple = async (
   filter: FilterQuery<IWorkspace>
 ): Promise<IWorkspace[]> => {
-  return await Workspace.find(filter);
+  return await Workspace.find(filter).populate("director");
 };
 
 const findById = async (_id: Types.ObjectId | string): Promise<IWorkspace> => {
-  const workspace = await Workspace.findById(_id);
+  const workspace = await Workspace.findById(_id).populate("director");
 
   if (!workspace) throw new NotFoundError("Workspace does not exist");
 
@@ -94,17 +90,12 @@ const leave = async (userId: string, workspaceId: string) => {
   } else {
     await workspace.deleteOne();
   }
-
-  // either way remove it from the user workspaces
-  await User.findByIdAndUpdate(userId, {
-    $pull: { workspaces: workspace._id },
-  });
 };
 
 const inviteUser = async (
   email: string,
-  workspace_id: Pick<IWorkspace, "_id">,
-  user_id: Pick<IUser, "_id">
+  workspace_id: string,
+  user_id: string
 ) => {
   /**
    * if the user exists on the db, send an invite with a lonk to join the workspace
@@ -189,16 +180,20 @@ const joinWithInvite = async (invite_id: string) => {
   if (!user) throw new NotFoundError("User does not exist");
 
   workspace.users = [...workspace.users, user._id.toString()];
-  user.workspaces = [
-    ...(user.workspaces as string[]),
-    workspace._id.toString(),
-  ];
 
   await workspace.save();
   await invitation.deleteOne();
-  await user.save();
 };
 
-const workspaceServices = {};
+const workspaceServices = {
+  createWorkspace,
+  leave,
+  joinWithInvite,
+  inviteUser,
+  deleteOne,
+  updateOne,
+  findById,
+  findMultiple,
+};
 
 export default workspaceServices;

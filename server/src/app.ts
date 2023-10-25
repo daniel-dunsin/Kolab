@@ -27,6 +27,7 @@ app.get("/healthcheck", (req, res, next) => {
   res.status(200).json({ message: "App is working correctly" });
 });
 app.use("/api/v1/auth", routes.auth);
+app.use("/api/v1/workspace", routes.workspace);
 
 app.use(errorHandler);
 app.use("*", routeNotFound);
