@@ -1,8 +1,15 @@
 import React, { useState } from "react";
-import { BiChevronDown, BiChevronUp } from "react-icons/bi";
+import { BiChevronDown, BiChevronUp, BiPlus } from "react-icons/bi";
+import { BsGear } from "react-icons/bs";
+import { Link } from "react-router-dom";
+import CreateWorkspaceModal from "../../Modals/CreateWorkspaceModal";
+import { useDispatch } from "react-redux";
+import { openCreateWorkspaceModal } from "../../../store/handlersSlice";
 
 const Workspaces = () => {
   const [workspaceTabOpened, setWorkspaceTabOpened] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
 
   return (
     <footer className="relative">
@@ -22,7 +29,7 @@ const Workspaces = () => {
 
       {/* workspaces list */}
       {workspaceTabOpened && (
-        <div className="flex flex-col absolute bottom-[101%] left-0 w-full bg-[#f8f8f8] h-[150px] max-h-[150px] overflow-y-scroll z-[5] rounded-md shadow-md hover:shadow-lg cursor-pointer">
+        <div className="flex flex-col absolute bottom-[101%] left-0 w-full bg-[#f8f8f8] h-[150px] max-h-[150px] overflow-y-scroll z-[5] rounded-md shadow-md hover:shadow-lg cursor-pointer text-[.8rem]">
           {[
             "Test Workspace",
             "CodeAlgo Workspace",
@@ -39,6 +46,15 @@ const Workspaces = () => {
               </p>
             );
           })}
+
+          <Link
+            className="hover:bg-[rgba(0,0,0,0.07)] p-[10px] flex items-center gap-[.2rem]"
+            to={"/dashboard/workspace/new"}
+            onClick={() => dispatch(openCreateWorkspaceModal())}
+          >
+            <BiPlus />
+            New Workspace
+          </Link>
         </div>
       )}
     </footer>

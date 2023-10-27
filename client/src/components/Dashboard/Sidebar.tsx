@@ -18,8 +18,8 @@ const links = [
     icon: <MdDashboard />,
   },
   {
-    text: "Settings",
-    link: "/dashboard/settings",
+    text: "Workspace Settings",
+    link: "/dashboard/workspace/settings",
     icon: <BsGear />,
   },
 ];

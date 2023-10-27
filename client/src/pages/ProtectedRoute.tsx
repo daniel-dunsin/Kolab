@@ -8,7 +8,7 @@ const ProtectedRoute = () => {
   const user = getUserFromLocalStorage();
   const dispatch = useDispatch();
 
-  if (user) {
+  if (!user) {
     dispatch(
       openErrorModal("You do not have access to this resource, sign in again")
     );

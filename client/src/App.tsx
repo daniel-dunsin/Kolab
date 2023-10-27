@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./store";
 import Preloader from "./components/UI/Preloader";
 import ErrorModal from "./components/UI/ErrorModal";
+import CreateWorkspaceModal from "./components/Modals/CreateWorkspaceModal";
 
 function App() {
   const queryClient = new QueryClient();
@@ -15,6 +16,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Preloader />
         <ErrorModal />
+        <CreateWorkspaceModal />
         <RouterProvider router={routes} />
       </QueryClientProvider>
     </Provider>

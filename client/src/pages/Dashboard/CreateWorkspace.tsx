@@ -1,12 +1,12 @@
 import React from "react";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 
-const Dashboard = () => {
+const CreateWorkspace = () => {
   return (
-    <DashboardLayout pageTitle="Dashboard">
+    <DashboardLayout pageTitle="Create New Workspace">
       <></>
     </DashboardLayout>
   );
 };
 
-export default Dashboard;
+export default CreateWorkspace;

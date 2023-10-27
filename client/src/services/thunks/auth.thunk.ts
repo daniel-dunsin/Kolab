@@ -3,6 +3,7 @@ import { IAuthSlice } from "../../interfaces/auth.interface";
 import { closePreloader, openPreloader } from "../../store/handlersSlice";
 import errorResolver from "../../utils/errorResolver";
 import httpInstance from "../../axios.config";
+import { deleteAccessToken, deleteUser } from "../../utils/tokens";
 
 export const loginUser: any = createAsyncThunk(
   "auth/loginUser",
@@ -18,7 +19,7 @@ export const loginUser: any = createAsyncThunk(
       });
 
       dispatch(closePreloader());
-      return response?.data;
+      return response?.data?.data;
     } catch (error: any) {
       return errorResolver(thunkApi, error);
     }
@@ -88,3 +89,9 @@ export const verifyAccount: any = createAsyncThunk(
     }
   }
 );
+
+export const logOut = async () => {
+  deleteUser();
+  deleteAccessToken();
+  window.location.replace("/login");
+};

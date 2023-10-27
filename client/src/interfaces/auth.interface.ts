@@ -3,6 +3,7 @@ export interface IUser {
   firstName: string;
   lastName: string;
   email: string;
+  profilePicture: string;
 }
 
 export interface IAuthSlice extends IUser {}

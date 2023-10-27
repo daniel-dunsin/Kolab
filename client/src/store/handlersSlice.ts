@@ -4,6 +4,7 @@ import { IHandlerSlice } from "../interfaces/handlers.interface";
 const initialState: IHandlerSlice = {
   preloader: { isOpen: false, text: "" },
   errorModal: { isOpen: false, text: "" },
+  createWorkspaceModal: { isOpen: false },
 };
 
 const handlerSlice = createSlice({
@@ -22,6 +23,12 @@ const handlerSlice = createSlice({
     closeErrorModal: (state: IHandlerSlice) => {
       state.errorModal = initialState.errorModal;
     },
+    openCreateWorkspaceModal: (state: IHandlerSlice) => {
+      state.createWorkspaceModal.isOpen = true;
+    },
+    closeCreateWorkspaceModal: (state: IHandlerSlice) => {
+      state.createWorkspaceModal.isOpen = false;
+    },
   },
 });
 
@@ -31,6 +38,8 @@ export const {
   closePreloader,
   openErrorModal,
   closeErrorModal,
+  openCreateWorkspaceModal,
+  closeCreateWorkspaceModal,
 } = handlerSlice.actions;
 
 export default handlerReducer;

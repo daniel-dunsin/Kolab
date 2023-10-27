@@ -6,6 +6,7 @@ import Login from "./Auth/Login";
 import VerifyEmail from "./Auth/VerifyEmail";
 import ProtectedRoute from "./ProtectedRoute";
 import Dashboard from "./Dashboard/Dashboard";
+import CreateWorkspace from "./Dashboard/CreateWorkspace";
 
 const routes = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const routes = createBrowserRouter([
       {
         index: true,
         element: <Dashboard />,
+      },
+      {
+        path: "workspace/new",
+        element: <CreateWorkspace />,
       },
     ],
   },

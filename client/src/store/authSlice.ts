@@ -12,6 +12,7 @@ const initialState: IAuthSlice = {
   email: "",
   firstName: "",
   lastName: "",
+  profilePicture: "",
 };
 
 const authSlice = createSlice({

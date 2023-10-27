@@ -7,9 +7,10 @@ import { Squash } from "hamburger-react";
 
 interface Props {
   toggleSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+  pageTitle: string;
 }
 
-const Navbar = ({ toggleSidebar }: Props) => {
+const Navbar = ({ toggleSidebar, pageTitle }: Props) => {
   const width = useWidth();
 
   return (
@@ -19,7 +20,7 @@ const Navbar = ({ toggleSidebar }: Props) => {
           <Logo />
         </span>
         <h2 className="hidden lg:block font-medium text-[1.5rem] text-mainBlack">
-          Dashboard
+          {pageTitle}
         </h2>
 
         <div className="flex items-center">

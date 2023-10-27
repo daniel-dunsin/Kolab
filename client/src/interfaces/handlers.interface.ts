@@ -4,6 +4,7 @@ export interface IHandlerSlice {
     text: string;
   };
   errorModal: { isOpen: boolean; text: string };
+  createWorkspaceModal: { isOpen: boolean };
 }
 
 export enum IScreen {

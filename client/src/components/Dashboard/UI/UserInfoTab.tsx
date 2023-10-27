@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { getUserFromLocalStorage } from "../../../utils/tokens";
 import { BiChevronDown, BiChevronUp, BiLogOut } from "react-icons/bi";
 import image from "../../../assets/images/profile-img.jpg";
+import { logOut } from "../../../services/thunks/auth.thunk";
 
 function UserInfoTab() {
   const [tabOpened, setTabOpened] = useState<boolean>(false);
@@ -16,12 +17,12 @@ function UserInfoTab() {
       >
         <div className="flex items-center flex-1">
           <img
-            src={image}
+            src={user?.profilePicture}
             className="w-[30px] h-[30px] rounded-full object-cover object-center block mr-2"
             alt="Adejare Daniel Dp"
           />
           <p className="hidden lg:block truncate flex-1 text-mainBlack font-medium">
-            Adejare Daniel
+            {user?.firstName} {user?.lastName}
           </p>
         </div>
         <span className="text-[1.8rem] text-mainBlack">
@@ -40,12 +41,12 @@ function UserInfoTab() {
           <div>
             <div className="flex items-start gap-[1rem]">
               <img
-                src={image}
+                src={user?.profilePicture}
                 className="w-[70px] h-[70px] rounded-full object-center object-cover border-[10px] border-[#f7f7f7]"
                 alt=""
               />
               <h2 className="break-words text-[1.6rem] font-bold text-mainBlack leading-[1.1]">
-                Adejare Daniel
+                {user?.firstName} {user?.lastName}
               </h2>
 
               <span
@@ -56,12 +57,12 @@ function UserInfoTab() {
               </span>
             </div>
 
-            <p className="mt-2 text-mainBlack">
-              <b>Email: </b> adejaredaniel12@gmail.com
+            <p className="mt-2 text-mainBlack truncate">
+              <b>Email: </b> {user?.email}
             </p>
           </div>
 
-          <p className="mt-2 text-mainBlack cursor-pointer">
+          <p className="mt-2 text-mainBlack cursor-pointer" onClick={logOut}>
             <span className="inline-block mr-2 align-middle text-[1.2rem] font-bold">
               <BiLogOut />
             </span>

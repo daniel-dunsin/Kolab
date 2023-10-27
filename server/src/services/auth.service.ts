@@ -6,12 +6,18 @@ import {
 } from "../constants/errors";
 import JwtHelper from "../helpers/jwt";
 import sendMail from "../helpers/mailer";
-import { IAuth, ITokenTypes, IUser } from "../interfaces/models/user.interface";
+import {
+  IAuth,
+  IToken,
+  ITokenTypes,
+  IUser,
+} from "../interfaces/models/user.interface";
 import { ILoginRes } from "../interfaces/responses/auth.response";
 import Auth from "../models/auth.model";
 import User from "../models/user.model";
 import { verifyEmailHtml } from "../templates/verification-email";
 import tokenService from "./token.service";
+import Token from "../models/token.model";
 
 const createAccount = async (body: Partial<IUser & IAuth>) => {
   const { firstName, lastName, email, password } = body;
@@ -95,11 +101,40 @@ const signIn = async (body: Partial<IAuth>): Promise<ILoginRes> => {
 
   if (!authInDb) throw new NotFoundError("User does not exist");
 
-  if (!authInDb.isVerified) throw new ForbiddenError("Account is not verified");
+  const user = <IUser>await User.findOne<IUser>({ email: authInDb.email });
 
-  const user = <IUser>(
-    await User.findOne<IUser>({ email: authInDb.email }).populate("workspaces")
-  );
+  if (!authInDb.isVerified) {
+    // resend a verification token again
+    const tokenInDb = await Token.findOne({
+      tokenType: ITokenTypes.verifyAccountToken,
+      email: email,
+    });
+    let token: IToken | undefined;
+
+    if (tokenInDb) {
+      tokenInDb.value = v4();
+      await tokenInDb.save();
+    } else {
+      token = await Token.create({
+        tokenType: ITokenTypes.verifyAccountToken,
+        email,
+        value: v4(),
+      });
+    }
+
+    await sendMail({
+      to: email,
+      subject: "Account verification email",
+      html: verifyEmailHtml(
+        { firstName: user?.firstName },
+        token?.value as string
+      ),
+    });
+
+    throw new ForbiddenError(
+      "Account is not verified, a new verification link has been sent to you"
+    );
+  }
 
   const isPasswordMatch = await authInDb.confirmPassword(password);
 

@@ -13,7 +13,7 @@ export const storeUserInLocalStorage = (user: IUser) => {
 
 export const getUserFromLocalStorage = (): IUser => {
   const user = <IUser>(
-    JSON.parse(localStorage.getItem(ILocalStorageItem.user) as string)
+    (JSON.parse(localStorage.getItem(ILocalStorageItem.user) as string) || "")
   );
 
   return user;

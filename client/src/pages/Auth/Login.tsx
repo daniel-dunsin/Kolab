@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import Button from "../../components/UI/Button";
 import FormRow from "../../components/UI/FormRow";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/Home/Navbar";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../services/thunks/auth.thunk";
@@ -12,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>("");
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const submit = async (e: ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,6 +27,8 @@ const Login = () => {
         showConfirmButton: false,
         icon: "success",
       });
+
+      navigate("/dashboard");
     }
   };
 
