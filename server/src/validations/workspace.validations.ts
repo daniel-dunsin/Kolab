@@ -3,8 +3,6 @@ import { object, string } from "yup";
 export const CreateWorkspaceInput = object({
   body: object({
     name: string().required("Workspace name is required"),
-    description: string().required("Description is required"),
-    picture: string().notRequired(),
   }),
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import Button from "./Button";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-import { closeErrorModal } from "../../store/handlersSlice";
+import { closeErrorModal } from "../../store/handlers.slice";
 
 const ErrorModal = () => {
   const errorModal = useSelector(

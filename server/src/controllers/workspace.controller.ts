@@ -9,15 +9,13 @@ const createWorkspace = async (
   next: NextFunction
 ) => {
   try {
-    const { name, picture, description } = req.body;
+    const { name } = req.body;
 
     const userId = <string>req.userId;
 
     const data = await workspaceServices.createWorkspace({
       director: userId,
       name,
-      picture,
-      description,
     });
 
     res.status(201).json({ message: "Workspace created successfully", data });

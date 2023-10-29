@@ -16,12 +16,10 @@ import WorkspaceInvitation from "../models/workspace-invitation.model";
 const createWorkspace = async (
   body: Partial<IWorkspace>
 ): Promise<IWorkspace> => {
-  const { name, description, picture, director } = body;
+  const { name, director } = body;
 
   const workspace = await Workspace.create({
     name,
-    description,
-    picture,
     director,
   });
 

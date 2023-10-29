@@ -1,7 +1,7 @@
 import { GetThunkAPI } from "@reduxjs/toolkit/dist/createAsyncThunk";
 import { Axios, AxiosError } from "axios";
 import thunk from "redux-thunk";
-import { closePreloader, openErrorModal } from "../store/handlersSlice";
+import { closePreloader, openErrorModal } from "../store/handlers.slice";
 
 const errorResolver = (thunkApi: GetThunkAPI<{}>, error: any) => {
   const dispatch = thunkApi.dispatch;

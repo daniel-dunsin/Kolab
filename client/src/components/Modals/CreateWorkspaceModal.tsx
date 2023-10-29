@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import FormRow from "../UI/FormRow";
 import Button from "../UI/Button";
-import { closeCreateWorkspaceModal } from "../../store/handlersSlice";
+import { closeCreateWorkspaceModal } from "../../store/handlers.slice";
+import { createWorkspace } from "../../services/thunks/workspace.thunk";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const CreateWorkspaceModal = () => {
   const [name, setName] = useState<string>("");
@@ -15,6 +18,26 @@ const CreateWorkspaceModal = () => {
   );
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const submit = async (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const data = await dispatch(createWorkspace(name));
+
+    if (!data.error) {
+      await Swal.fire({
+        title: "Workspace Creation",
+        text: "This workspace has been created successfully",
+        timer: 2000,
+        icon: "success",
+        showConfirmButton: false,
+      });
+
+      dispatch(closeCreateWorkspaceModal());
+      navigate("/dashboard");
+    }
+  };
 
   if (!isOpen) return <></>;
 
@@ -32,7 +55,10 @@ const CreateWorkspaceModal = () => {
         </span>
       </header>
 
-      <form className="pt-[1rem] pb-[.5rem] border-t-2 mt-[1rem]">
+      <form
+        className="pt-[1rem] pb-[.5rem] border-t-2 mt-[1rem]"
+        onSubmit={submit}
+      >
         <FormRow
           label="Enter workspace name"
           placeholder="Enter workspace name"
@@ -43,7 +69,11 @@ const CreateWorkspaceModal = () => {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <Button text="Create Workspace" className="mt-4 ml-auto" />
+        <Button
+          text="Create Workspace"
+          type="submit"
+          className="mt-4 ml-auto"
+        />
       </form>
     </ModalOverlay>
   );

@@ -4,7 +4,7 @@ import { BsGear } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import CreateWorkspaceModal from "../../Modals/CreateWorkspaceModal";
 import { useDispatch } from "react-redux";
-import { openCreateWorkspaceModal } from "../../../store/handlersSlice";
+import { openCreateWorkspaceModal } from "../../../store/handlers.slice";
 
 const Workspaces = () => {
   const [workspaceTabOpened, setWorkspaceTabOpened] = useState<boolean>(false);

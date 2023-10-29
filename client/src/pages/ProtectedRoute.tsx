@@ -2,7 +2,8 @@ import React from "react";
 import { getUserFromLocalStorage } from "../utils/tokens";
 import { Navigate, Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { openErrorModal } from "../store/handlersSlice";
+import { openErrorModal } from "../store/handlers.slice";
+import CreateWorkspaceModal from "../components/Modals/CreateWorkspaceModal";
 
 const ProtectedRoute = () => {
   const user = getUserFromLocalStorage();
@@ -17,6 +18,7 @@ const ProtectedRoute = () => {
 
   return (
     <>
+      <CreateWorkspaceModal />
       <Outlet />
     </>
   );

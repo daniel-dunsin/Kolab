@@ -16,7 +16,6 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <Preloader />
         <ErrorModal />
-        <CreateWorkspaceModal />
         <RouterProvider router={routes} />
       </QueryClientProvider>
     </Provider>

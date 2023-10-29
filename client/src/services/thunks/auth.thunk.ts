@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { IAuthSlice } from "../../interfaces/auth.interface";
-import { closePreloader, openPreloader } from "../../store/handlersSlice";
+import { closePreloader, openPreloader } from "../../store/handlers.slice";
 import errorResolver from "../../utils/errorResolver";
 import httpInstance from "../../axios.config";
 import { deleteAccessToken, deleteUser } from "../../utils/tokens";
