@@ -6,7 +6,10 @@ import { RootState } from "../../store";
 import FormRow from "../UI/FormRow";
 import Button from "../UI/Button";
 import { closeCreateWorkspaceModal } from "../../store/handlers.slice";
-import { createWorkspace } from "../../services/thunks/workspace.thunk";
+import {
+  createWorkspace,
+  getMyWorkspaces,
+} from "../../services/thunks/workspace.thunk";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
@@ -36,6 +39,7 @@ const CreateWorkspaceModal = () => {
 
       dispatch(closeCreateWorkspaceModal());
       navigate("/dashboard");
+      await dispatch(getMyWorkspaces());
     }
   };
 

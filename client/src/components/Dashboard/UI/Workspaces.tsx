@@ -3,13 +3,19 @@ import { BiChevronDown, BiChevronUp, BiPlus } from "react-icons/bi";
 import { BsGear } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import CreateWorkspaceModal from "../../Modals/CreateWorkspaceModal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { openCreateWorkspaceModal } from "../../../store/handlers.slice";
+import { RootState } from "../../../store";
+import { updateCurrentWorkspace } from "../../../store/workspace.slice";
 
 const Workspaces = () => {
   const [workspaceTabOpened, setWorkspaceTabOpened] = useState<boolean>(false);
 
   const dispatch = useDispatch();
+
+  const { workspaces, currentWorkspace } = useSelector(
+    (state: RootState) => state.workspaces
+  );
 
   return (
     <footer className="relative">
@@ -17,11 +23,13 @@ const Workspaces = () => {
         className="flex items-center gap-[.8rem] mt-[1rem] cursor-pointer"
         onClick={() => setWorkspaceTabOpened(!workspaceTabOpened)}
       >
-        <span className="text-[1rem] bg-primary w-[30px] h-[30px] rounded-full flex items-center justify-center">
-          C
+        <span className="text-[1rem] bg-primary w-[30px] h-[30px] rounded-full uppercase flex items-center justify-center">
+          {currentWorkspace?.name?.[0]}
         </span>
 
-        <p className="text-mainBlack font-bold  truncate">Codealgo Academy</p>
+        <p className="text-mainBlack font-bold  truncate">
+          {currentWorkspace?.name}
+        </p>
         <span className="text-[1.4rem]">
           {workspaceTabOpened ? <BiChevronUp /> : <BiChevronDown />}
         </span>
@@ -30,31 +38,29 @@ const Workspaces = () => {
       {/* workspaces list */}
       {workspaceTabOpened && (
         <div className="flex flex-col absolute bottom-[101%] left-0 w-full bg-[#f8f8f8] h-[150px] max-h-[150px] overflow-y-scroll z-[5] rounded-md shadow-md hover:shadow-lg cursor-pointer text-[.8rem]">
-          {[
-            "Test Workspace",
-            "CodeAlgo Workspace",
-            "Oluebube Workspace",
-            "Daniel Workspace",
-          ]?.map((workspace, index) => {
+          {workspaces?.map((workspace, index) => {
             return (
               <p
                 key={index}
                 className="hover:bg-[rgba(0,0,0,0.07)] p-[10px]"
-                onClick={() => setWorkspaceTabOpened(false)}
+                onClick={() => {
+                  dispatch(updateCurrentWorkspace(workspace));
+                  setWorkspaceTabOpened(false);
+                }}
               >
-                {workspace}
+                {workspace?.name}
               </p>
             );
           })}
 
-          <Link
+          <div
             className="hover:bg-[rgba(0,0,0,0.07)] p-[10px] flex items-center gap-[.2rem]"
-            to={"/dashboard/workspace/new"}
+            // to={"/dashboard/workspace/new"}
             onClick={() => dispatch(openCreateWorkspaceModal())}
           >
             <BiPlus />
             New Workspace
-          </Link>
+          </div>
         </div>
       )}
     </footer>

@@ -13,6 +13,8 @@ const createWorkspace = async (
 
     const userId = <string>req.userId;
 
+    console.log(userId);
+
     const data = await workspaceServices.createWorkspace({
       director: userId,
       name,

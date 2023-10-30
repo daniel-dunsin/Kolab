@@ -7,7 +7,7 @@ import httpInstance from "../../axios.config";
 export const createWorkspace: any = createAsyncThunk(
   "create-workspace",
   async (name: string, thunkApi) => {
-    const dispatch = useDispatch();
+    const dispatch = thunkApi.dispatch;
 
     dispatch(openPreloader("Creating Workspace"));
 
@@ -56,6 +56,22 @@ export const deleteWorkspace: any = createAsyncThunk(
   async (id: string, thunkApi) => {
     try {
       const response = await httpInstance.delete(`/workspace/${id}`);
+
+      return response?.data;
+    } catch (error) {
+      return errorResolver(thunkApi, error);
+    }
+  }
+);
+
+export const inviteUserToWorkspace: any = createAsyncThunk(
+  "invite user to workspace",
+  async (data: { workspace_id: string; email: string }, thunkApi) => {
+    try {
+      const response = await httpInstance.post(
+        `/workspace/${data?.workspace_id}/invite`,
+        { email: data.email }
+      );
 
       return response?.data;
     } catch (error) {

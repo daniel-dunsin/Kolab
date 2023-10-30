@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
+import { useDispatch } from "react-redux";
+import { getMyWorkspaces } from "../../services/thunks/workspace.thunk";
 
 interface Props {
   pageTitle: string;
@@ -9,6 +11,12 @@ interface Props {
 
 const DashboardLayout = ({ pageTitle, children }: Props) => {
   const [sidebarOpened, setSidebarOpened] = React.useState<boolean>(false);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMyWorkspaces());
+  }, [window?.location.pathname]);
 
   return (
     <main className="min-h-screen bg-[#f4f3f3] w-full">

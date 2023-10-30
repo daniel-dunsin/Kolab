@@ -5,6 +5,9 @@ import { MdDashboard } from "react-icons/md";
 import { BsGear } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
 import Workspaces from "./UI/Workspaces";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { getUserFromLocalStorage } from "../../utils/tokens";
 
 interface Props {
   isOpened: boolean;
@@ -16,16 +19,23 @@ const links = [
     text: "Dashboard",
     link: "/dashboard",
     icon: <MdDashboard />,
+    directorDependent: false,
   },
   {
     text: "Workspace Settings",
     link: "/dashboard/workspace/settings",
     icon: <BsGear />,
+    directorDependent: true,
   },
 ];
 
 const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
   const { pathname } = useLocation();
+
+  const { currentWorkspace } = useSelector(
+    (state: RootState) => state.workspaces
+  );
+  const user = getUserFromLocalStorage();
 
   return (
     <aside
@@ -43,18 +53,28 @@ const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
 
       <div className="mt-[2rem] flex flex-col gap-y-[.7rem] max-h-[65vh] h-[65vh] overflow-y-scroll">
         {links?.map((link, index) => {
+          console.log(currentWorkspace?._id, user._id);
           return (
-            <Link
-              className={`${
-                pathname === link?.link
-                  ? "bg-primary text-white"
-                  : "hover:bg-[#0000011d]"
-              } px-[1rem] py-[10px] rounded-md`}
-              to={link?.link}
-              key={index}
-            >
-              {link?.text}
-            </Link>
+            /**
+             * if the link is director dependent display only if the person is a director
+             */
+            <>
+              {(!link?.directorDependent ||
+                (link?.directorDependent &&
+                  currentWorkspace?._id === user._id)) && (
+                <Link
+                  className={`${
+                    pathname === link?.link
+                      ? "bg-primary text-white"
+                      : "hover:bg-[#0000011d]"
+                  } px-[1rem] py-[10px] rounded-md`}
+                  to={link?.link}
+                  key={index}
+                >
+                  {link?.text}
+                </Link>
+              )}
+            </>
           );
         })}
       </div>

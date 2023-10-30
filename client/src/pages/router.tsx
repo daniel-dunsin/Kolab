@@ -34,7 +34,7 @@ const routes = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "workspace/new",
+        path: "workspace/:id/edit",
         element: <CreateWorkspace />,
       },
     ],
