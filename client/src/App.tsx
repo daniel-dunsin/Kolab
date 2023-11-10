@@ -4,9 +4,9 @@ import React from "react";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./store";
-import Preloader from "./components/UI/Preloader";
-import ErrorModal from "./components/UI/ErrorModal";
-import CreateWorkspaceModal from "./components/Modals/CreateWorkspaceModal";
+import Preloader from "./components/ui/Preloader";
+import ErrorModal from "./components/ui/ErrorModal";
+import CreateWorkspaceModal from "./components/modals/CreateWorkspaceModal";
 
 function App() {
   const queryClient = new QueryClient();

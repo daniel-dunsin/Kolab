@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaT, FaTriangleExclamation } from "react-icons/fa6";
 import { verifyAccount } from "../../services/thunks/auth.thunk";
-import Button from "../../components/UI/Button";
+import Button from "../../components/ui/Button";
 import { BiCheck, BiLoaderAlt } from "react-icons/bi";
-import VerirfcationEmailModal from "../../components/Modals/VerirfcationEmailModal";
+import VerirfcationEmailModal from "../../components/modals/VerirfcationEmailModal";
 import Swal from "sweetalert2";
 
 const VerifyEmail = () => {

@@ -1,5 +1,5 @@
 import { AsyncThunk, createAsyncThunk } from "@reduxjs/toolkit";
-import errorResolver from "../../utils/errorResolver";
+import errorResolver from "../../utils/error-resolver";
 import { useDispatch } from "react-redux";
 import { closePreloader, openPreloader } from "../../store/handlers.slice";
 import httpInstance from "../../axios.config";
@@ -15,8 +15,6 @@ export const createWorkspace: any = createAsyncThunk(
       const response = await httpInstance.post("/workspace", { name });
 
       dispatch(closePreloader());
-
-      console.log(response);
 
       return response?.data?.data;
     } catch (error) {

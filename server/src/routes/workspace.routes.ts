@@ -1,5 +1,5 @@
 import { Router } from "express";
-import isAuth from "../middlewares/isAuth";
+import isAuth from "../middlewares/auth.middleware";
 import validate from "../validations";
 import {
   CreateWorkspaceInput,

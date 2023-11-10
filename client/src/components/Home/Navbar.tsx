@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { BiGlobe } from "react-icons/bi";
 import { Link } from "react-router-dom";
-import Button from "../UI/Button";
+import Button from "../ui/Button";
 import { Squash } from "hamburger-react";
-import Logo from "../UI/Logo";
+import Logo from "../ui/Logo";
 
 function Navbar() {
   const [linksOpen, setLinksOpen] = useState<boolean>(false);

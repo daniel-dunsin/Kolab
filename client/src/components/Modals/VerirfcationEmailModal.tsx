@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { MdCancel, MdClose } from "react-icons/md";
-import FormRow from "../UI/FormRow";
-import Button from "../UI/Button";
+import FormRow from "../ui/FormRow";
+import Button from "../ui/Button";
 import { useDispatch } from "react-redux";
 import { resendVerificationEmail } from "../../services/thunks/auth.thunk";
 import Swal from "sweetalert2";

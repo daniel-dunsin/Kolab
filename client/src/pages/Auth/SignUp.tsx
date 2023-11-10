@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import FormRow from "../../components/UI/FormRow";
-import Button from "../../components/UI/Button";
-import Navbar from "../../components/Home/Navbar";
+import FormRow from "../../components/ui/FormRow";
+import Button from "../../components/ui/Button";
+import Navbar from "../../components/home/Navbar";
 import { useDispatch } from "react-redux";
 import { signUpUser } from "../../services/thunks/auth.thunk";
 import Swal from "sweetalert2";

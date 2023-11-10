@@ -1,12 +1,13 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./Home";
-import SignUp from "./Auth/SignUp";
-import Login from "./Auth/Login";
-import VerifyEmail from "./Auth/VerifyEmail";
+import SignUp from "./auth/SignUp";
+import Login from "./auth/Login";
+import VerifyEmail from "./auth/VerifyEmail";
 import ProtectedRoute from "./ProtectedRoute";
-import Dashboard from "./Dashboard/Dashboard";
-import CreateWorkspace from "./Dashboard/CreateWorkspace";
+import Dashboard from "./dashboard/Dashboard";
+import Settings from "./dashboard/Settings";
+import Todos from "./dashboard/Todos";
 
 const routes = createBrowserRouter([
   {
@@ -34,8 +35,12 @@ const routes = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "workspace/:id/edit",
-        element: <CreateWorkspace />,
+        path: "workspace/settings",
+        element: <Settings />,
+      },
+      {
+        path: "todo",
+        element: <Todos />,
       },
     ],
   },

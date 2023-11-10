@@ -8,7 +8,7 @@ const setupServer = (app: Application) => {
     .connect(settings.mongodbUrl)
     .then(() => {
       app.listen(settings.port, () => {
-        logger.info(`App is listening on port ${settings.port}🔥`);
+        logger.info(`App is listening on port ${settings.port}⚡`);
       });
     })
     .catch((error) => {

@@ -19,12 +19,15 @@ const DashboardLayout = ({ pageTitle, children }: Props) => {
   }, [window?.location.pathname]);
 
   return (
-    <main className="min-h-screen bg-[#f4f3f3] w-full">
+    <main className="h-screen bg-[#f4f3f3] w-full overflow-hidden">
       <Sidebar toggleSidebar={setSidebarOpened} isOpened={sidebarOpened} />
       <section className="h-screen ml-0 lg:ml-[300px]">
         <Navbar pageTitle={pageTitle} toggleSidebar={setSidebarOpened} />
 
-        <section className="p-[1rem]">
+        <section
+          className="p-[1rem]"
+          style={{ maxHeight: "calc(100vh - 86px)", overflowY: "scroll" }}
+        >
           <h1 className="text-[1.2rem] font-bold text-mainBlack lg:hidden">
             {pageTitle}
           </h1>

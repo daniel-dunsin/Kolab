@@ -1,13 +1,15 @@
 import React from "react";
-import Logo from "../UI/Logo";
+import Logo from "../ui/Logo";
 import { Squash } from "hamburger-react";
 import { MdDashboard } from "react-icons/md";
 import { BsGear } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
-import Workspaces from "./UI/Workspaces";
+import Workspaces from "./ui/Workspaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { getUserFromLocalStorage } from "../../utils/tokens";
+import { BiNotepad } from "react-icons/bi";
+import { FaCircleExclamation } from "react-icons/fa6";
 
 interface Props {
   isOpened: boolean;
@@ -19,6 +21,18 @@ const links = [
     text: "Dashboard",
     link: "/dashboard",
     icon: <MdDashboard />,
+    directorDependent: false,
+  },
+  {
+    text: "To-Do",
+    link: "/dashboard/todo",
+    icon: <BiNotepad />,
+    directorDependent: false,
+  },
+  {
+    text: "Issues Tracker",
+    link: "/dashboard/issues",
+    icon: <FaCircleExclamation />,
     directorDependent: false,
   },
   {
@@ -53,7 +67,6 @@ const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
 
       <div className="mt-[2rem] flex flex-col gap-y-[.7rem] max-h-[65vh] h-[65vh] overflow-y-scroll">
         {links?.map((link, index) => {
-          console.log(currentWorkspace?._id, user._id);
           return (
             /**
              * if the link is director dependent display only if the person is a director
@@ -67,10 +80,11 @@ const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
                     pathname === link?.link
                       ? "bg-primary text-white"
                       : "hover:bg-[#0000011d]"
-                  } px-[1rem] py-[10px] rounded-md`}
+                  } px-[1rem] py-[10px] rounded-md flex items-center gap-[.8rem]`}
                   to={link?.link}
                   key={index}
                 >
+                  <span className="inline-block">{link?.icon}</span>
                   {link?.text}
                 </Link>
               )}
