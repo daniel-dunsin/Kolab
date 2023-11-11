@@ -107,10 +107,6 @@ export const getTimeDiff = (
   date1: Date,
   date2: Date
 ): { hours: number; minutes: number } => {
-  // reset both dates
-  date1.setMinutes(0);
-  date2.setMinutes(0);
-
   const time1 = date1.getTime();
   const time2 = date2.getTime();
 
