@@ -11,6 +11,7 @@ import Todos from "./dashboard/Todos";
 import Timesheet from "./dashboard/Timesheet";
 import Projects from "./dashboard/Projects";
 import Members from "./dashboard/Members";
+import Issues from "./dashboard/Issues";
 
 const routes = createBrowserRouter([
   {
@@ -56,6 +57,10 @@ const routes = createBrowserRouter([
       {
         path: "members",
         element: <Members />,
+      },
+      {
+        path: "issues",
+        element: <Issues />,
       },
     ],
   },

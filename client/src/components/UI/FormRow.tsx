@@ -1,7 +1,9 @@
 import React, { InputHTMLAttributes } from "react";
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
+interface Props
+  extends InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
   label?: string;
+  isTextArea?: boolean;
 }
 
 function FormRow({ label, className, ...props }: Props) {
@@ -12,10 +14,17 @@ function FormRow({ label, className, ...props }: Props) {
           {label}
         </label>
       )}
-      <input
-        {...props}
-        className={`p-2 text-[.8rem] w-full outline-none border-[1.5px] hover:border-primary rounded-md ${className}`}
-      />
+      {props?.isTextArea ? (
+        <textarea
+          {...props}
+          className={`resize-none p-2 text-[.8rem] w-full outline-none border-[1.5px] hover:border-primary rounded-md ${className}`}
+        />
+      ) : (
+        <input
+          {...props}
+          className={`p-2 text-[.8rem] w-full outline-none border-[1.5px] hover:border-primary rounded-md ${className}`}
+        />
+      )}
     </div>
   );
 }
