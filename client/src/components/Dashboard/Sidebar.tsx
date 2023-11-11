@@ -60,7 +60,7 @@ const links = [
     text: "Workspace Settings",
     link: "/dashboard/workspace/settings",
     icon: <BsGear />,
-    directorDependent: true,
+    directorDependent: false,
   },
 ];
 
