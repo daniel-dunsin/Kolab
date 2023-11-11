@@ -6,10 +6,73 @@ import Button from "../ui/Button";
 import { FileUploader } from "react-drag-drop-files";
 import { BiPhotoAlbum } from "react-icons/bi";
 import CreateIssuesImagesModal from "./CreateIssuesImages";
+import Editor from "../ui/Editor";
+import { IUser } from "../../interfaces/auth.interface";
+import SelectUser from "../dashboard/issues/SelectUser";
+import SelectProject from "../dashboard/issues/SelectProject";
 
 interface Props {
   closeModal(): void;
 }
+
+const members = [
+  {
+    firstName: "Adejare",
+    lastName: "Daniel",
+    email: "adejaredaniel12@gmail.com",
+    profilePicture:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
+  },
+
+  {
+    firstName: "Adejare",
+    lastName: "Daniel",
+    email: "adejaredaniel12@gmail.com",
+    profilePicture:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
+  },
+
+  {
+    firstName: "Adejare",
+    lastName: "Daniel",
+    email: "adejaredaniel12@gmail.com",
+    profilePicture:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
+  },
+
+  {
+    firstName: "Adejare",
+    lastName: "Daniel",
+    email: "adejaredaniel12@gmail.com",
+    profilePicture:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
+  },
+
+  {
+    firstName: "Adejare",
+    lastName: "Daniel",
+    email: "adejaredaniel12@gmail.com",
+    profilePicture:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
+  },
+
+  {
+    firstName: "Adejare",
+    lastName: "Daniel",
+    email: "adejaredaniel12@gmail.com",
+    profilePicture:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
+  },
+];
+
+const projects = [
+  {
+    name: "Project 1",
+  },
+  {
+    name: "Project 2",
+  },
+];
 
 const CreateIssueModal = ({ closeModal }: Props) => {
   // modal
@@ -18,6 +81,8 @@ const CreateIssueModal = ({ closeModal }: Props) => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [files, setFiles] = useState<File[]>([]);
+  const [assignedUser, setAssignedUser] = useState<IUser>(members?.[0]);
+  const [project, setProject] = useState(projects?.[0]);
 
   const onChange = (file_list: FileList) => {
     for (let i = 0; i < file_list.length; i++) {
@@ -48,8 +113,8 @@ const CreateIssueModal = ({ closeModal }: Props) => {
         className="pt-[1rem] border-t-2 mt-[1rem]"
         // onSubmit={submit}
       >
-        <div className="flex gap-[1rem]">
-          <div className="md:pr-[1rem] border-r-2 flex-[.7] flex flex-col gap-y-[.5rem]">
+        <div className="flex gap-[1rem] flex-col lg:flex-row">
+          <div className="md:pr-[1rem] lg:border-r-2 flex-[.7] flex flex-col gap-y-[.5rem] max-h-[70vh] lg:overflow-y-scroll">
             <FormRow
               label="Title"
               placeholder="Enter Title"
@@ -59,17 +124,21 @@ const CreateIssueModal = ({ closeModal }: Props) => {
               name="title"
               onChange={(e) => setTitle(e.target.value)}
             />
-            <FormRow
-              label="Description"
-              placeholder="Enter Description"
-              type="text"
-              required={true}
-              value={description}
-              className="h-[150px]"
-              isTextArea={true}
-              name="description"
-              onChange={(e) => setDescription(e.target.value)}
-            />
+
+            <div className="w-[100%] min-h-[280px]">
+              <label htmlFor="" className="font-bold text-[.8rem] blcok mb-2">
+                Description
+              </label>
+              <Editor
+                value={description}
+                onChange={setDescription}
+                style={{
+                  width: "100%",
+                  height: "170px",
+                  backgroundColor: "#f3f3f3",
+                }}
+              />
+            </div>
 
             <div className="flex flex-col  col-span-1 gap-y-[0.2rem] w-full flex-1">
               <label className="text-[.8rem] block mb-2">Attachments</label>
@@ -94,9 +163,30 @@ const CreateIssueModal = ({ closeModal }: Props) => {
               )}
             </div>
           </div>
-          <div className="flex-[.3]"></div>
+
+          {/* Second Container */}
+          <div className="flex-[.3]">
+            <p className="font-bold text-[.8rem] mb-1">Assign To</p>
+            <SelectUser
+              users={members}
+              user={assignedUser}
+              setUser={setAssignedUser}
+            />
+
+            <p className="font-bold text-[.8rem] mb-1">Select Project</p>
+            <SelectProject
+              projects={projects}
+              project={project}
+              setProject={setProject}
+            />
+
+            <Button
+              text="Create Issue"
+              type="submit"
+              className="mt-4 ml-auto"
+            />
+          </div>
         </div>
-        <Button text="Create Issue" type="submit" className="mt-4 ml-auto" />
       </form>
     </ModalOverlay>
   );
