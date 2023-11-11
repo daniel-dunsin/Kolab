@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./store";
 import Preloader from "./components/ui/Preloader";
 import ErrorModal from "./components/ui/ErrorModal";
-import CreateWorkspaceModal from "./components/modals/CreateWorkspaceModal";
+import "react-day-picker/dist/style.css";
 
 function App() {
   const queryClient = new QueryClient();

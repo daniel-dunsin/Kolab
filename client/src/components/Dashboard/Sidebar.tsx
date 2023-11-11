@@ -8,8 +8,10 @@ import Workspaces from "./ui/Workspaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { getUserFromLocalStorage } from "../../utils/tokens";
-import { BiNotepad } from "react-icons/bi";
+import { BiNote, BiNotepad } from "react-icons/bi";
+import { LuCalendarClock } from "react-icons/lu";
 import { FaCircleExclamation } from "react-icons/fa6";
+import Members from "./dashboard-page/Members";
 
 interface Props {
   isOpened: boolean;
@@ -30,9 +32,22 @@ const links = [
     directorDependent: false,
   },
   {
+    text: "Timesheet",
+    link: "/dashboard/timesheet",
+    icon: <LuCalendarClock />,
+    directorDependent: false,
+  },
+  {
     text: "Issues Tracker",
     link: "/dashboard/issues",
     icon: <FaCircleExclamation />,
+    directorDependent: false,
+  },
+
+  {
+    text: "Projects",
+    link: "/dashboard/projects",
+    icon: <BiNote />,
     directorDependent: false,
   },
   {

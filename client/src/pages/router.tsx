@@ -8,6 +8,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Dashboard from "./dashboard/Dashboard";
 import Settings from "./dashboard/Settings";
 import Todos from "./dashboard/Todos";
+import Timesheet from "./dashboard/Timesheet";
 
 const routes = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const routes = createBrowserRouter([
       {
         path: "todo",
         element: <Todos />,
+      },
+      {
+        path: "timesheet",
+        element: <Timesheet />,
       },
     ],
   },

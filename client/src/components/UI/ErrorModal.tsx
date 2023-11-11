@@ -18,7 +18,7 @@ const ErrorModal = () => {
       id="error-modal"
       className=" fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50 z-50"
     >
-      <div className="bg-white w-96 p-6 rounded-lg">
+      <div className="bg-white w-[96vw] max-w-[384px] p-6 rounded-lg">
         <div className="text-red-600 text-2xl font-semibold mb-4">Error</div>
         <p className="text-gray-700">{errorModal.text}</p>
         <Button

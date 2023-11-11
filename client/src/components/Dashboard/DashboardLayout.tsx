@@ -26,7 +26,11 @@ const DashboardLayout = ({ pageTitle, children }: Props) => {
 
         <section
           className="p-[1rem]"
-          style={{ maxHeight: "calc(100vh - 86px)", overflowY: "scroll" }}
+          style={{
+            maxHeight: "calc(100vh - 86px)",
+            minHeight: "calc(100vh - 86px)",
+            overflowY: "scroll",
+          }}
         >
           <h1 className="text-[1.2rem] font-bold text-mainBlack lg:hidden">
             {pageTitle}
