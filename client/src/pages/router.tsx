@@ -9,6 +9,8 @@ import Dashboard from "./dashboard/Dashboard";
 import Settings from "./dashboard/Settings";
 import Todos from "./dashboard/Todos";
 import Timesheet from "./dashboard/Timesheet";
+import Projects from "./dashboard/Projects";
+import Members from "./dashboard/Members";
 
 const routes = createBrowserRouter([
   {
@@ -46,6 +48,14 @@ const routes = createBrowserRouter([
       {
         path: "timesheet",
         element: <Timesheet />,
+      },
+      {
+        path: "projects",
+        element: <Projects />,
+      },
+      {
+        path: "members",
+        element: <Members />,
       },
     ],
   },

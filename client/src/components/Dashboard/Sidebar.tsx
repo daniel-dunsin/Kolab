@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { getUserFromLocalStorage } from "../../utils/tokens";
 import { BiNote, BiNotepad } from "react-icons/bi";
-import { LuCalendarClock } from "react-icons/lu";
+import { LuCalendarClock, LuUsers } from "react-icons/lu";
 import { FaCircleExclamation } from "react-icons/fa6";
 import Members from "./dashboard-page/Members";
 
@@ -48,6 +48,12 @@ const links = [
     text: "Projects",
     link: "/dashboard/projects",
     icon: <BiNote />,
+    directorDependent: false,
+  },
+  {
+    text: "Members",
+    link: "/dashboard/members",
+    icon: <LuUsers />,
     directorDependent: false,
   },
   {

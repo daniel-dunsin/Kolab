@@ -6,7 +6,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 function FormRow({ label, className, ...props }: Props) {
   return (
-    <div className="flex flex-col  col-span-1 gap-y-[0.2rem] w-full flex-[50%]">
+    <div className="flex flex-col  col-span-1 gap-y-[0.2rem] w-full flex-1">
       {label && (
         <label htmlFor={props.name} className="text-[.8rem]">
           {label}

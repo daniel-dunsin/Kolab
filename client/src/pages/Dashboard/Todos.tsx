@@ -41,7 +41,7 @@ const Todos = () => {
       </div>
 
       <section className="mt-6">
-        <SearchBox placeholder="Search Todo..." />
+        <SearchBox placeholder="Search Todos..." />
 
         <div className="flex flex-col gap-4 mt-7">
           {todos?.map((todo, index) => {

@@ -36,7 +36,7 @@ const SingleTimeSheet = ({
           </b>
         </p>
       </header>
-      <div className="p-2 bg-white text-[.9rem] flex gap-x-6 gap-y-4 flex-wrap w-full justify-between">
+      <div className="p-2 bg-white text-[.9rem] flex gap-x-6 gap-y-4 flex-wrap flex-col sm:flex-row w-full justify-between">
         {/* What i worked on */}
         <p className="">{text}</p>
 
@@ -50,7 +50,7 @@ const SingleTimeSheet = ({
         </p>
 
         {/* Delete icon */}
-        <span className="block justify-self-end flex-1 max-w-fit ml-auto">
+        <span className="block justify-self-end flex-1 max-w-fit lg:ml-auto">
           <IconContainer
             width={30}
             height={30}

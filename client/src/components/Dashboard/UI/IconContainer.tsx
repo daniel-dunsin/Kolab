@@ -11,7 +11,7 @@ interface Props {
 const IconContainer = ({ icon, width, height, onClick, bg }: Props) => {
   return (
     <span
-      className={`flex items-center justify-center 
+      className={`flex items-center justify-center cursor-pointer 
       ${bg ? bg : "bg-primary"}
        rounded-xl text-white`}
       style={{
