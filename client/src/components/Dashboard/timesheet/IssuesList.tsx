@@ -11,7 +11,7 @@ const issues = [
 
 const IssuesList = () => {
   return (
-    <div className="p-2 rounded-xl bg-white absolute top-[150%] right-0 max-w-[400px] w-[90vw] shadow-md min-h-[200px]">
+    <div className="p-2 rounded-xl bg-white absolute top-[150%] right-0 max-w-[400px] w-[90vw] shadow-md min-h-[200px] z-[2]">
       <FormRow type="search" placeholder="Find issue or project..." />
 
       <div className="mt-4">

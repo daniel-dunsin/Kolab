@@ -44,6 +44,9 @@ export const getDate = (date_input: Date): string => {
   return `${day}, ${date} ${month} ${year}`;
 };
 
+export const formatTime = (text: string | number) =>
+  (text = (text as number) > 9 ? text : `0${text}`);
+
 export const getTime = (date_input: Date): string => {
   const date = new Date(date_input);
 
@@ -74,7 +77,7 @@ export const validateTime = (time: string): string | undefined => {
         extra_hour++;
         time_slice = time_slice - 60;
       }
-      time_slice = time_slice > 9 ? time_slice : `0${time_slice}`;
+      time_slice = formatTime(time_slice);
 
       return `0${parseInt(time[0]) + extra_hour}:${time_slice}`;
     }
@@ -98,4 +101,48 @@ export const updateDateWithTime = (
   date.setMinutes(parseInt(minutes));
 
   return date;
+};
+
+export const getTimeDiff = (
+  date1: Date,
+  date2: Date
+): { hours: number; minutes: number } => {
+  // reset both dates
+  date1.setMinutes(0);
+  date2.setMinutes(0);
+
+  const time1 = date1.getTime();
+  const time2 = date2.getTime();
+
+  const difference = time1 - time2;
+
+  const ONE_DAY = 1000 * 60 * 60 * 24;
+  const ONE_HOUR = 1000 * 60 * 60;
+  const ONE_MINUTE = 1000 * 60;
+
+  const hours = Math.floor((difference % ONE_DAY) / ONE_HOUR);
+
+  const minutes = Math.floor((difference % ONE_HOUR) / ONE_MINUTE);
+
+  return { hours, minutes };
+};
+
+export const incrementByDay = (
+  date_input: Date,
+  days_increment: number
+): Date => {
+  const hours_increment = days_increment * 24;
+
+  const dateObj = new Date(date_input);
+
+  const date = dateObj.getDate();
+  const month = dateObj.getMonth();
+  const year = dateObj.getFullYear();
+
+  const time = getTime(date_input);
+  const minutes = parseInt(time?.[1]);
+  let hours = parseInt(time?.[0]);
+  hours += hours_increment;
+
+  return new Date(year, month, date, hours, minutes);
 };
