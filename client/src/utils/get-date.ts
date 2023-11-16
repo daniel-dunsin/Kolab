@@ -82,7 +82,18 @@ export const validateTime = (time: string): string | undefined => {
       return `0${parseInt(time[0]) + extra_hour}:${time_slice}`;
     }
     case 4: {
-      return `${time.slice(0, 2)}:${time.slice(2, 4)}`;
+      // 09:99 should give 10:39
+      let hour_slice: string | number = parseInt(`${time.slice(0, 2)}`);
+      let minute_slice: string | number = parseInt(`${time.slice(2, 4)}`);
+
+      if (minute_slice >= 60) {
+        hour_slice++;
+        minute_slice = minute_slice - 60;
+      }
+      minute_slice = formatTime(minute_slice);
+      hour_slice = formatTime(hour_slice);
+
+      return `${hour_slice}:${minute_slice}`;
     }
     default: {
       return undefined;

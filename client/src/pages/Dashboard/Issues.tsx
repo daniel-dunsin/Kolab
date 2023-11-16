@@ -4,7 +4,7 @@ import TodayDate from "../../components/dashboard/ui/TodayDate";
 import Button from "../../components/ui/Button";
 import { BiPlus } from "react-icons/bi";
 import CreateIssueModal from "../../components/modals/CreateIssueModal";
-import KanbanBoard from "../../components/dashboard/issues/KanbanBoard";
+import IssuesList from "../../components/dashboard/issues/IssuesList";
 
 const Issues = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -32,7 +32,7 @@ const Issues = () => {
         className="block ml-auto mt-5"
       />
 
-      <KanbanBoard />
+      <IssuesList />
     </DashboardLayout>
   );
 };

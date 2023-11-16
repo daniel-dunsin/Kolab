@@ -7,7 +7,7 @@ import { BiPlus } from "react-icons/bi";
 import InviteUserModal from "../../components/modals/InviteUserModal";
 import SingleMember from "../../components/dashboard/members/SingleMember";
 
-const members = [
+export const members = [
   {
     _id: "akjsksas",
     profilePicture:

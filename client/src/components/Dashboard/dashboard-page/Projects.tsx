@@ -3,7 +3,7 @@ import ContentBox from "../ui/ContentBox";
 import IconContainer from "../ui/IconContainer";
 import { BiFolder } from "react-icons/bi";
 
-const projects = [
+export const projects = [
   { name: "Project One", timeSpent: "00:40:00" },
   { name: "Project Two", timeSpent: "00:15:00" },
 ];

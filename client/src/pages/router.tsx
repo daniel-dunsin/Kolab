@@ -12,6 +12,7 @@ import Timesheet from "./dashboard/Timesheet";
 import Projects from "./dashboard/Projects";
 import Members from "./dashboard/Members";
 import Issues from "./dashboard/Issues";
+import SingleIssue from "./dashboard/SingleIssue";
 
 const routes = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const routes = createBrowserRouter([
       {
         path: "issues",
         element: <Issues />,
+      },
+      {
+        path: "issues/:id",
+        element: <SingleIssue />,
       },
     ],
   },

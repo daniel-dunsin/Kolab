@@ -110,7 +110,7 @@ const CreateIssueModal = ({ closeModal }: Props) => {
       </header>
 
       <form
-        className="pt-[1rem] border-t-2 mt-[1rem]"
+        className="pt-[1rem] border-t-2 mt-[1rem] lg:max-h-fit max-h-[80vh] lg:overflow-y-auto overflow-y-scroll overflow-x-hidden"
         // onSubmit={submit}
       >
         <div className="flex gap-[1rem] flex-col lg:flex-row">
