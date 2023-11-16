@@ -1,5 +1,5 @@
 import React from "react";
-import ContentBox from "../ui/ContentBox";
+import ContentBox from "../UI/ContentBox";
 
 const members = [
   {

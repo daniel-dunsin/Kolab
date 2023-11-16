@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import FormRow from "../../ui/FormRow";
+import FormRow from "../../UI/FormRow";
 import { BiCalendar, BiPlusCircle } from "react-icons/bi";
 import IssuesList from "./IssuesList";
 import TimeInput from "./TimeInputs";
@@ -12,7 +12,7 @@ import {
   updateDateWithTime,
 } from "../../../utils/get-date";
 import DatePicker from "./DatePicker";
-import Button from "../../ui/Button";
+import Button from "../../UI/Button";
 
 const AddTime = () => {
   const [issuesOpen, setIssuesOpen] = useState<boolean>(false);

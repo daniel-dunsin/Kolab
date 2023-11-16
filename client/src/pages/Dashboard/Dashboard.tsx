@@ -1,14 +1,14 @@
 import React from "react";
-import DashboardLayout from "../../components/dashboard/DashboardLayout";
+import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import { getTodaysDate } from "../../utils/get-date";
-import TimeTracked from "../../components/dashboard/dashboard-page/TimeTracked";
-import ProjectsWorked from "../../components/dashboard/dashboard-page/ProjectsWorked";
-import NoOfIssues from "../../components/dashboard/dashboard-page/NoOfIssues";
-import Members from "../../components/dashboard/dashboard-page/Members";
-import TodoList from "../../components/dashboard/dashboard-page/TodoList";
-import Projects from "../../components/dashboard/dashboard-page/Projects";
-import Issues from "../../components/dashboard/dashboard-page/Issues";
-import TodayDate from "../../components/dashboard/ui/TodayDate";
+import TimeTracked from "../../components/Dashboard/dashboard-page/TimeTracked";
+import ProjectsWorked from "../../components/Dashboard/dashboard-page/ProjectsWorked";
+import NoOfIssues from "../../components/Dashboard/dashboard-page/NoOfIssues";
+import Members from "../../components/Dashboard/dashboard-page/Members";
+import TodoList from "../../components/Dashboard/dashboard-page/TodoList";
+import Projects from "../../components/Dashboard/dashboard-page/Projects";
+import Issues from "../../components/Dashboard/dashboard-page/Issues";
+import TodayDate from "../../components/Dashboard/UI/TodayDate";
 
 const Dashboard = () => {
   return (

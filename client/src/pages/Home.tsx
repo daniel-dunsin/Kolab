@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "../components/home/Navbar";
-import Banner from "../components/home/Banner";
-import Section2 from "../components/home/Section2";
+import Navbar from "../components/Home/Navbar";
+import Banner from "../components/Home/Banner";
+import Section2 from "../components/Home/Section2";
 
 function Home() {
   return (

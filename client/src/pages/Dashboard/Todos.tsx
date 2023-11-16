@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import DashboardLayout from "../../components/dashboard/DashboardLayout";
-import TodayDate from "../../components/dashboard/ui/TodayDate";
-import Button from "../../components/ui/Button";
+import DashboardLayout from "../../components/Dashboard/DashboardLayout";
+import TodayDate from "../../components/Dashboard/UI/TodayDate";
+import Button from "../../components/UI/Button";
 import { BiPlus } from "react-icons/bi";
-import SingleTodo from "../../components/dashboard/todos/SingleTodo";
-import SearchBox from "../../components/ui/SearchBox";
-import CreateTodoModal from "../../components/modals/CreateTodoModal";
+import SingleTodo from "../../components/Dashboard/todos/SingleTodo";
+import SearchBox from "../../components/UI/SearchBox";
+import CreateTodoModal from "../../components/Modals/CreateTodoModal";
 
 const todos = [
   {

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import FormRow from "../ui/FormRow";
+import FormRow from "../UI/FormRow";
 import { MdClose } from "react-icons/md";
 import ModalOverlay from "./ModalOverlay";
-import Button from "../ui/Button";
+import Button from "../UI/Button";
 import { FileUploader } from "react-drag-drop-files";
 import { BiPhotoAlbum } from "react-icons/bi";
 import CreateIssuesImagesModal from "./CreateIssuesImages";
-import Editor from "../ui/Editor";
+import Editor from "../UI/Editor";
 import { IUser } from "../../interfaces/auth.interface";
-import SelectUser from "../dashboard/issues/SelectUser";
-import SelectProject from "../dashboard/issues/SelectProject";
+import SelectUser from "../Dashboard/issues/SelectUser";
+import SelectProject from "../Dashboard/issues/SelectProject";
 
 interface Props {
   closeModal(): void;

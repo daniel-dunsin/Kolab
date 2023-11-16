@@ -3,8 +3,8 @@ import ModalOverlay from "./ModalOverlay";
 import { MdCancel, MdClose } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
-import FormRow from "../ui/FormRow";
-import Button from "../ui/Button";
+import FormRow from "../UI/FormRow";
+import Button from "../UI/Button";
 import { closeCreateWorkspaceModal } from "../../store/handlers.slice";
 import {
   createWorkspace,

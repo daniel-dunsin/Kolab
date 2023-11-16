@@ -1,8 +1,8 @@
 import React from "react";
-import ContentBox from "../ui/ContentBox";
-import IconContainer from "../ui/IconContainer";
+import ContentBox from "../UI/ContentBox";
+import IconContainer from "../UI/IconContainer";
 import { BiFolder } from "react-icons/bi";
-import Button from "../../ui/Button";
+import Button from "../../UI/Button";
 
 const todos = ["Creating Wireframe", "Research Development"];
 

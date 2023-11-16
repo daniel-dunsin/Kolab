@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ModalOverlay from "./ModalOverlay";
 import { MdClose } from "react-icons/md";
-import FormRow from "../ui/FormRow";
-import Button from "../ui/Button";
+import FormRow from "../UI/FormRow";
+import Button from "../UI/Button";
 
 interface Props {
   closeModal(): void;

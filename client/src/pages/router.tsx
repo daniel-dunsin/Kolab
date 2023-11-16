@@ -1,18 +1,18 @@
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Home from "./Home";
-import SignUp from "./auth/SignUp";
-import Login from "./auth/Login";
-import VerifyEmail from "./auth/VerifyEmail";
+import SignUp from "./Auth/SignUp";
+import Login from "./Auth/Login";
+import VerifyEmail from "./Auth/VerifyEmail";
 import ProtectedRoute from "./ProtectedRoute";
-import Dashboard from "./dashboard/Dashboard";
-import Settings from "./dashboard/Settings";
-import Todos from "./dashboard/Todos";
-import Timesheet from "./dashboard/Timesheet";
-import Projects from "./dashboard/Projects";
-import Members from "./dashboard/Members";
-import Issues from "./dashboard/Issues";
-import SingleIssue from "./dashboard/SingleIssue";
+import Dashboard from "./Dashboard/Dashboard";
+import Settings from "./Dashboard/Settings";
+import Todos from "./Dashboard/Todos";
+import Timesheet from "./Dashboard/Timesheet";
+import Projects from "./Dashboard/Projects";
+import Members from "./Dashboard/Members";
+import Issues from "./Dashboard/Issues";
+import SingleIssue from "./Dashboard/SingleIssue";
 
 const routes = createBrowserRouter([
   {

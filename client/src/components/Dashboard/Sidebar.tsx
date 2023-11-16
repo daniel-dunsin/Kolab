@@ -1,10 +1,10 @@
 import React from "react";
-import Logo from "../ui/Logo";
+import Logo from "../UI/Logo";
 import { Squash } from "hamburger-react";
 import { MdDashboard } from "react-icons/md";
 import { BsGear } from "react-icons/bs";
 import { Link, useLocation } from "react-router-dom";
-import Workspaces from "./ui/Workspaces";
+import Workspaces from "./UI/Workspaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { getUserFromLocalStorage } from "../../utils/tokens";

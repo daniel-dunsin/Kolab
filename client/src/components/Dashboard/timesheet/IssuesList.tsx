@@ -1,5 +1,5 @@
 import React from "react";
-import FormRow from "../../ui/FormRow";
+import FormRow from "../../UI/FormRow";
 
 const issues = [
   {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import Logo from "../ui/Logo";
-import UserInfoTab from "./ui/UserInfoTab";
+import Logo from "../UI/Logo";
+import UserInfoTab from "./UI/UserInfoTab";
 import useWidth from "../../utils/hooks/useWidth";
 import { IScreen } from "../../interfaces/handlers.interface";
 import { Squash } from "hamburger-react";

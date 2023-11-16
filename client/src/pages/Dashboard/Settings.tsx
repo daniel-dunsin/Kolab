@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import DashboardLayout from "../../components/dashboard/DashboardLayout";
-import TodayDate from "../../components/dashboard/ui/TodayDate";
+import DashboardLayout from "../../components/Dashboard/DashboardLayout";
+import TodayDate from "../../components/Dashboard/UI/TodayDate";
 import { BiPencil, BiSave, BiTrash } from "react-icons/bi";
-import FormRow from "../../components/ui/FormRow";
-import Button from "../../components/ui/Button";
+import FormRow from "../../components/UI/FormRow";
+import Button from "../../components/UI/Button";
 
 const Settings = () => {
   const [newFile, setNewFile] = useState<File | undefined>(undefined);

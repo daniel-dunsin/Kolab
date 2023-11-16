@@ -3,7 +3,7 @@ import illustration1 from "../../assets/images/Boy Illustration.png";
 import kite from "../../assets/images/Plane Element.png";
 import analytics from "../../assets/images/Analytics Card 2.png";
 import whiteboard from "../../assets/images/Whiteboard Element.png";
-import Button from "../ui/Button";
+import Button from "../UI/Button";
 import { Link } from "react-router-dom";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 

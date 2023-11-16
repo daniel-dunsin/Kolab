@@ -1,8 +1,8 @@
 import React from "react";
-import DashboardLayout from "../../components/dashboard/DashboardLayout";
-import AddTime from "../../components/dashboard/timesheet/AddTime";
-import TodayDate from "../../components/dashboard/ui/TodayDate";
-import SingleTimeSheet from "../../components/dashboard/timesheet/SingleTimeSheet";
+import DashboardLayout from "../../components/Dashboard/DashboardLayout";
+import AddTime from "../../components/Dashboard/timesheet/AddTime";
+import TodayDate from "../../components/Dashboard/UI/TodayDate";
+import SingleTimeSheet from "../../components/Dashboard/timesheet/SingleTimeSheet";
 
 const timesheets = [
   {

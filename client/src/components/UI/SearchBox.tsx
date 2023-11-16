@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from "react";
-import IconContainer from "../dashboard/ui/IconContainer";
+import IconContainer from "../Dashboard/UI/IconContainer";
 import { BiSearch } from "react-icons/bi";
 
 interface Props extends HTMLAttributes<HTMLInputElement> {}

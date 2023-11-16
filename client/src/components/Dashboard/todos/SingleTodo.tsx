@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ITodo } from "../../../interfaces/todo.interface";
-import FormRow from "../../ui/FormRow";
+import FormRow from "../../UI/FormRow";
 import { getDate } from "../../../utils/get-date";
-import IconContainer from "../ui/IconContainer";
+import IconContainer from "../UI/IconContainer";
 import { BiTrash } from "react-icons/bi";
 
 interface Props extends ITodo {}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import DashboardLayout from "../../components/dashboard/DashboardLayout";
-import TodayDate from "../../components/dashboard/ui/TodayDate";
-import Button from "../../components/ui/Button";
+import DashboardLayout from "../../components/Dashboard/DashboardLayout";
+import TodayDate from "../../components/Dashboard/UI/TodayDate";
+import Button from "../../components/UI/Button";
 import { BiPlus } from "react-icons/bi";
-import CreateIssueModal from "../../components/modals/CreateIssueModal";
-import IssuesList from "../../components/dashboard/issues/IssuesList";
+import CreateIssueModal from "../../components/Modals/CreateIssueModal";
+import IssuesList from "../../components/Dashboard/issues/IssuesList";
 
 const Issues = () => {
   const [modalOpen, setModalOpen] = useState<boolean>(false);

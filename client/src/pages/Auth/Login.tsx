@@ -1,8 +1,8 @@
 import React, { ChangeEvent, useState } from "react";
-import Button from "../../components/ui/Button";
-import FormRow from "../../components/ui/FormRow";
+import Button from "../../components/UI/Button";
+import FormRow from "../../components/UI/FormRow";
 import { Link, useNavigate } from "react-router-dom";
-import Navbar from "../../components/home/Navbar";
+import Navbar from "../../components/Home/Navbar";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../services/thunks/auth.thunk";
 import Swal from "sweetalert2";

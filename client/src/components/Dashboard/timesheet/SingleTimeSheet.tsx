@@ -1,7 +1,7 @@
 import moment from "moment";
 import React from "react";
 import { formatTime, getTimeDiff } from "../../../utils/get-date";
-import IconContainer from "../ui/IconContainer";
+import IconContainer from "../UI/IconContainer";
 import { BiTrash } from "react-icons/bi";
 
 interface Props {

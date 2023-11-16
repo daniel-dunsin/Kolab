@@ -1,6 +1,6 @@
 import React from "react";
-import ContentBox from "../ui/ContentBox";
-import IconContainer from "../ui/IconContainer";
+import ContentBox from "../UI/ContentBox";
+import IconContainer from "../UI/IconContainer";
 import { BsExclamationCircle } from "react-icons/bs";
 
 const NoOfIssues = () => {

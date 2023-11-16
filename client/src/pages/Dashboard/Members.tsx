@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import SearchBox from "../../components/ui/SearchBox";
-import Button from "../../components/ui/Button";
-import TodayDate from "../../components/dashboard/ui/TodayDate";
-import DashboardLayout from "../../components/dashboard/DashboardLayout";
+import SearchBox from "../../components/UI/SearchBox";
+import Button from "../../components/UI/Button";
+import TodayDate from "../../components/Dashboard/UI/TodayDate";
+import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import { BiPlus } from "react-icons/bi";
-import InviteUserModal from "../../components/modals/InviteUserModal";
-import SingleMember from "../../components/dashboard/members/SingleMember";
+import InviteUserModal from "../../components/Modals/InviteUserModal";
+import SingleMember from "../../components/Dashboard/members/SingleMember";
 
 export const members = [
   {

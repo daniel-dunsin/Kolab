@@ -6,8 +6,8 @@ import {
   TableRow,
   TableRowEntry,
   TableRowsContainer,
-} from "../../ui/Table";
-import { members } from "../../../pages/dashboard/Members";
+} from "../../UI/Table";
+import { members } from "../../../pages/Dashboard/Members";
 import { projects } from "../dashboard-page/Projects";
 import { Link } from "react-router-dom";
 

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BiChevronDown, BiChevronUp, BiPlus } from "react-icons/bi";
 import { BsGear } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import CreateWorkspaceModal from "../../modals/CreateWorkspaceModal";
+import CreateWorkspaceModal from "../../Modals/CreateWorkspaceModal";
 import { useDispatch, useSelector } from "react-redux";
 import { openCreateWorkspaceModal } from "../../../store/handlers.slice";
 import { RootState } from "../../../store";

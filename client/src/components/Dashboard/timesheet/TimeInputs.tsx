@@ -1,5 +1,5 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
-import FormRow from "../../ui/FormRow";
+import FormRow from "../../UI/FormRow";
 import {
   getTime,
   updateDateWithTime,

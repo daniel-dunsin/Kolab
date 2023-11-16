@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { IUser } from "../../../interfaces/auth.interface";
 import { BiChevronDown, BiChevronUp, BiPaperPlane } from "react-icons/bi";
-import IconContainer from "../ui/IconContainer";
-import FormRow from "../../ui/FormRow";
-import Button from "../../ui/Button";
+import IconContainer from "../UI/IconContainer";
+import FormRow from "../../UI/FormRow";
+import Button from "../../UI/Button";
 
 interface Props extends IUser {}
 

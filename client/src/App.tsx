@@ -4,8 +4,8 @@ import React from "react";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "react-query";
 import store from "./store";
-import Preloader from "./components/ui/Preloader";
-import ErrorModal from "./components/ui/ErrorModal";
+import Preloader from "./components/UI/Preloader";
+import ErrorModal from "./components/UI/ErrorModal";
 import "react-day-picker/dist/style.css";
 
 function App() {
