@@ -1,79 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ContentBox from "../UI/ContentBox";
-
-const members = [
-  {
-    firstName: "Adejare",
-    lastName: "Daniel",
-    email: "adejaredaniel12@gmail.com",
-    profilePicture:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
-  },
-
-  {
-    firstName: "Adejare",
-    lastName: "Daniel",
-    email: "adejaredaniel12@gmail.com",
-    profilePicture:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
-  },
-
-  {
-    firstName: "Adejare",
-    lastName: "Daniel",
-    email: "adejaredaniel12@gmail.com",
-    profilePicture:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
-  },
-
-  {
-    firstName: "Adejare",
-    lastName: "Daniel",
-    email: "adejaredaniel12@gmail.com",
-    profilePicture:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
-  },
-
-  {
-    firstName: "Adejare",
-    lastName: "Daniel",
-    email: "adejaredaniel12@gmail.com",
-    profilePicture:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
-  },
-
-  {
-    firstName: "Adejare",
-    lastName: "Daniel",
-    email: "adejaredaniel12@gmail.com",
-    profilePicture:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU",
-  },
-];
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { useDispatch } from "react-redux";
+import { getWorkspaceMembers } from "../../../services/workspace-members.services";
 
 const Members = () => {
+  const { members, workspaces } = useSelector((state: RootState) => state);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getWorkspaceMembers());
+  }, [workspaces?.currentWorkspace]);
+
   return (
     <ContentBox headerSize="small" header="Members" maxHeight={150}>
       <div className="mt-2">
-        {members?.map((member, index) => {
+        {members?.map(({ userId }, index) => {
           return (
             <article
               key={index}
               className="border-[1.5px] rounded-[10px] py-[.2rem] px-[0.5rem] flex items-center gap-[.7rem] my-2"
             >
               <img
-                src={member?.profilePicture}
+                src={userId?.profilePicture}
                 className="w-[30px] h-[30px] object-cover object-center rounded-full"
-                alt={member?.firstName + " profile picture"}
+                alt={userId?.firstName + " profile picture"}
               />
 
               <div>
                 <h5 className="font-bold leading-1 text-[1.1rem]">
-                  {member?.firstName} {member?.lastName}
+                  {userId?.firstName} {userId?.lastName}
                 </h5>
-                <p className="truncate my-0 py-0 text-[.8rem]">
-                  {member?.email}
-                </p>
+                <p className="truncate my-0 py-0 text-[.8rem]">{userId?.email}</p>
               </div>
             </article>
           );

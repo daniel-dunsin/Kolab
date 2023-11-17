@@ -11,6 +11,7 @@ import { RootState } from "../../store";
 import { useDispatch } from "react-redux";
 import { getWorkspaceMembers } from "../../services/workspace-members.services";
 import checkIsDirector from "../../utils/is-director";
+import useSearch from "../../utils/hooks/useSearch";
 
 export const members = [
   {
@@ -33,8 +34,12 @@ export const members = [
 
 const Members = () => {
   const dispatch = useDispatch();
-  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const { members, workspaces } = useSelector((state: RootState) => state);
+  const { data, value, setValue } = useSearch({
+    items: members.map((mem) => mem.userId),
+    fields: ["firstName", "lastName"],
+  });
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
   const isDirector = checkIsDirector(workspaces.currentWorkspace);
 
   useEffect(() => {
@@ -61,11 +66,11 @@ const Members = () => {
       </div>
 
       <section className="mt-6">
-        <SearchBox placeholder="Search Members..." />
+        <SearchBox value={value} setValue={setValue} placeholder="Search Members..." />
 
         <div className="mt-5">
-          {members?.map((member, index) => {
-            return <SingleMember {...member.userId} key={index} />;
+          {data?.map((member, index) => {
+            return <SingleMember {...member} key={index} />;
           })}
         </div>
       </section>
