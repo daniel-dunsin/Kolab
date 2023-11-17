@@ -3,6 +3,7 @@ import authReducer from './auth.slice';
 import handlerReducer from './handlers.slice';
 import workspaceReducer from './workspace.slice';
 import membersReducer from './workspace-members.slice';
+import todoReducer from './todo.slice';
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     handler: handlerReducer,
     workspaces: workspaceReducer,
     members: membersReducer,
+    todos: todoReducer,
   },
 });
 

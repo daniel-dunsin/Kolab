@@ -6,28 +6,24 @@ import { BiPlus } from "react-icons/bi";
 import SingleTodo from "../../components/Dashboard/todos/SingleTodo";
 import SearchBox from "../../components/UI/SearchBox";
 import CreateTodoModal from "../../components/Modals/CreateTodoModal";
-
-const todos = [
-  {
-    text: "My Todo",
-    updatedAt: new Date(),
-  },
-  {
-    text: "Go To School",
-    updatedAt: new Date("2002-10-24"),
-  },
-];
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { useDispatch } from "react-redux";
+import { getTodos } from "../../services/todo.services";
 
 const Todos = () => {
+  const [value, setValue] = useState<string>("");
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const todos = useSelector((state: RootState) => state.todos);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    dispatch(getTodos());
+  }, []);
 
   return (
     <DashboardLayout pageTitle="Todos">
-      <>
-        {modalOpen && (
-          <CreateTodoModal closeModal={() => setModalOpen(false)} />
-        )}
-      </>
+      <>{modalOpen && <CreateTodoModal closeModal={() => setModalOpen(false)} />}</>
 
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <TodayDate />
@@ -41,8 +37,6 @@ const Todos = () => {
       </div>
 
       <section className="mt-6">
-        <SearchBox placeholder="Search Todos..." />
-
         <div className="flex flex-col gap-4 mt-7">
           {todos?.map((todo, index) => {
             return <SingleTodo {...todo} key={index} />;
