@@ -1,15 +1,19 @@
 import React, { ChangeEvent, useState } from "react";
 import Button from "../../components/UI/Button";
 import FormRow from "../../components/UI/FormRow";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import Navbar from "../../components/Home/Navbar";
 import { useDispatch } from "react-redux";
-import { loginUser } from "../../services/thunks/auth.thunk";
+import { loginUser } from "../../services/auth.services";
 import Swal from "sweetalert2";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const [searchParams] = useSearchParams();
+
+  const redirect = searchParams.get("redirect");
+  const invite_id = searchParams.get("invite_id");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,7 +32,8 @@ const Login = () => {
         icon: "success",
       });
 
-      navigate("/dashboard");
+      if (redirect) navigate(`/${redirect}?invite_id=${invite_id}`);
+      else navigate("/dashboard");
     }
   };
 
@@ -39,15 +44,10 @@ const Login = () => {
       <div className="bg-[#f4f4f4] w-full h-screen flex items-center justify-center p-[1rem] ">
         <div className="max-w-[500px] bg-white rounded-md p-[1rem] w-full">
           <header className="flex items-center justify-between gap-[12px]">
-            <h2 className="font-bold text-[1.1rem] text-blue-950">
-              Log in to your account
-            </h2>
+            <h2 className="font-bold text-[1.1rem] text-blue-950">Log in to your account</h2>
             <p className="text-[.9rem] cursor-pointer">
               You wan signup?{" "}
-              <Link
-                to={"/signup"}
-                className="underline text-blue-950 font-bold"
-              >
+              <Link to={"/signup"} className="underline text-blue-950 font-bold">
                 Signup
               </Link>
             </p>

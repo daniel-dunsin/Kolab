@@ -1,6 +1,6 @@
-import mongoose, { Types } from "mongoose";
-import { IWorkspace } from "../interfaces/models/workspace.interface";
-import { Collections } from "../constants/collections";
+import mongoose, { Types } from 'mongoose';
+import { IWorkspace } from '../interfaces/models/workspace.interface';
+import { Collections } from '../constants/collections';
 
 const WorkspaceSchema = new mongoose.Schema<IWorkspace>({
   name: { type: String, required: true },
@@ -8,14 +8,9 @@ const WorkspaceSchema = new mongoose.Schema<IWorkspace>({
   picture: {
     type: String,
     required: false,
-    default:
-      "https://cdn.dribbble.com/users/294225/screenshots/15292899/wrkspace-1.png",
+    default: 'https://cdn.dribbble.com/users/294225/screenshots/15292899/wrkspace-1.png',
   },
   director: { type: Types.ObjectId, required: true, ref: Collections.user },
-  users: {
-    type: [{ type: Types.ObjectId, ref: Collections.user }],
-    default: [],
-  },
 });
 
 const Workspace = mongoose.model(Collections.workspaces, WorkspaceSchema);

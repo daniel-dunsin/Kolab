@@ -13,6 +13,7 @@ import Projects from "./Dashboard/Projects";
 import Members from "./Dashboard/Members";
 import Issues from "./Dashboard/Issues";
 import SingleIssue from "./Dashboard/SingleIssue";
+import JoinWorkspace from "./JoinWorkspace";
 
 const routes = createBrowserRouter([
   {
@@ -68,6 +69,10 @@ const routes = createBrowserRouter([
         element: <SingleIssue />,
       },
     ],
+  },
+  {
+    path: "/join-workspace",
+    element: <JoinWorkspace />,
   },
 ]);
 

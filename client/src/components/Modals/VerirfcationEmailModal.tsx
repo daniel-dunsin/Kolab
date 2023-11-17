@@ -3,7 +3,7 @@ import { MdCancel, MdClose } from "react-icons/md";
 import FormRow from "../UI/FormRow";
 import Button from "../UI/Button";
 import { useDispatch } from "react-redux";
-import { resendVerificationEmail } from "../../services/thunks/auth.thunk";
+import { resendVerificationEmail } from "../../services/auth.services";
 import Swal from "sweetalert2";
 import ModalOverlay from "./ModalOverlay";
 
@@ -36,15 +36,9 @@ const VerirfcationEmailModal = ({ closeModal }: Props) => {
   return (
     <ModalOverlay>
       <header>
-        <MdClose
-          className="ml-auto text-red-500 cursor-pointer text-[1.3rem]"
-          onClick={closeModal}
-        />
+        <MdClose className="ml-auto text-red-500 cursor-pointer text-[1.3rem]" onClick={closeModal} />
       </header>
-      <form
-        onSubmit={submit}
-        className="mt-6 max-w-[300px] mx-auto flex flex-col gap-y-[1rem]"
-      >
+      <form onSubmit={submit} className="mt-6 max-w-[300px] mx-auto flex flex-col gap-y-[1rem]">
         <FormRow
           type="email"
           name="email"

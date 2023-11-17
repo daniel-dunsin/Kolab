@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import FormRow from "../../components/UI/FormRow";
 import Button from "../../components/UI/Button";
 import Navbar from "../../components/Home/Navbar";
 import { useDispatch } from "react-redux";
-import { signUpUser } from "../../services/thunks/auth.thunk";
+import { signUpUser } from "../../services/auth.services";
 import Swal from "sweetalert2";
 
 const SignUp = () => {
@@ -12,15 +12,14 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
+  const [searchParams] = useSearchParams();
 
   const dispatch = useDispatch();
 
   const submit = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const data = await dispatch(
-      signUpUser({ firstName, lastName, email, password })
-    );
+    const data = await dispatch(signUpUser({ firstName, lastName, email, password }));
 
     if (!data?.error) {
       await Swal.fire({
@@ -39,9 +38,7 @@ const SignUp = () => {
       <div className="bg-[#f4f4f4] w-full h-screen flex items-center justify-center p-[1rem] ">
         <div className="max-w-[800px] bg-white rounded-md p-[1rem] w-full">
           <header className="flex items-center justify-between gap-[12px]">
-            <h2 className="font-bold text-[1.1rem] text-blue-950">
-              Create your account
-            </h2>
+            <h2 className="font-bold text-[1.1rem] text-blue-950">Create your account</h2>
             <p className="text-[.9rem] cursor-pointer">
               Already have an acccount?{" "}
               <Link to={"/login"} className="underline text-blue-950 font-bold">
@@ -93,11 +90,7 @@ const SignUp = () => {
               />
             </div>
 
-            <Button
-              text="Create Account"
-              type="submit"
-              className="mt-4 block w-full"
-            />
+            <Button text="Create Account" type="submit" className="mt-4 block w-full" />
           </form>
         </div>
       </div>

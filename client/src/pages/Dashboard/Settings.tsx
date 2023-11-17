@@ -8,6 +8,7 @@ import Button from "../../components/UI/Button";
 const Settings = () => {
   const [newFile, setNewFile] = useState<File | undefined>(undefined);
   const [name, setName] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
 
   return (
     <DashboardLayout pageTitle="Workspace Settings">
@@ -55,7 +56,17 @@ const Settings = () => {
           placeholder="Enter workspace name"
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="max-w-[300px]"
+          className="max-w-[300px] mb-2"
+          required
+        />
+
+        <FormRow
+          label="Edit Workspace Description"
+          placeholder="Enter workspace description"
+          value={description}
+          isTextArea={true}
+          onChange={(e) => setDescription(e.target.value)}
+          className="max-w-[400px] min-w-[400px] max-h-[150px] min-h-[150px]"
           required
         />
 

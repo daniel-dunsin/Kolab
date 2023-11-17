@@ -36,5 +36,10 @@ router.post(
   workspaceControllers.inviteUserToWorkspace
 );
 router.post("/:id/leave", isAuth, workspaceControllers.leaveWorkspace);
+router.get(
+  "/invite_id/:id",
+  isAuth,
+  workspaceControllers.getWorkspaceByInviteId
+);
 
 export default router;

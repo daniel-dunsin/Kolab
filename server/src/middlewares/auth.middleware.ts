@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { UnAuthorizedError } from "../constants/errors";
+import { ForbiddenError, UnAuthorizedError } from "../constants/errors";
 import JwtHelper from "../helpers/jwt";
 
 declare global {
@@ -23,13 +23,13 @@ const isAuth = async (req: Request, res: Response, next: NextFunction) => {
     const authToken = authHeader?.split(" ")[1];
 
     if (!authToken) {
-      throw new UnAuthorizedError("Provide auth token after Bearer ");
+      throw new ForbiddenError("Provide auth token after Bearer ");
     }
 
     const decoded = await JwtHelper.verify<{ userId: string }>(authToken);
 
     if (!decoded) {
-      throw new UnAuthorizedError("Invalid/expired token");
+      throw new ForbiddenError("Invalid/expired token");
     }
 
     req.userId = decoded?.userId;

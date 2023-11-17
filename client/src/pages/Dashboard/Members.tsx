@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SearchBox from "../../components/UI/SearchBox";
 import Button from "../../components/UI/Button";
 import TodayDate from "../../components/Dashboard/UI/TodayDate";
@@ -6,6 +6,11 @@ import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import { BiPlus } from "react-icons/bi";
 import InviteUserModal from "../../components/Modals/InviteUserModal";
 import SingleMember from "../../components/Dashboard/members/SingleMember";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { useDispatch } from "react-redux";
+import { getWorkspaceMembers } from "../../services/workspace-members.services";
+import checkIsDirector from "../../utils/is-director";
 
 export const members = [
   {
@@ -27,25 +32,32 @@ export const members = [
 ];
 
 const Members = () => {
+  const dispatch = useDispatch();
   const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const { members, workspaces } = useSelector((state: RootState) => state);
+  const isDirector = checkIsDirector(workspaces.currentWorkspace);
+
+  useEffect(() => {
+    if (workspaces.currentWorkspace?._id) {
+      dispatch(getWorkspaceMembers());
+    }
+  }, [workspaces?.currentWorkspace]);
 
   return (
     <DashboardLayout pageTitle="Members">
-      <>
-        {modalOpen && (
-          <InviteUserModal closeModal={() => setModalOpen(false)} />
-        )}
-      </>
+      <>{modalOpen && <InviteUserModal closeModal={() => setModalOpen(false)} />}</>
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <TodayDate />
         {/* Only Directors should have this */}
-        <Button
-          text="Invite user to your workspace"
-          icon={<BiPlus />}
-          onClick={() => {
-            setModalOpen(true);
-          }}
-        />
+        {isDirector && (
+          <Button
+            text="Invite user to your workspace"
+            icon={<BiPlus />}
+            onClick={() => {
+              setModalOpen(true);
+            }}
+          />
+        )}
       </div>
 
       <section className="mt-6">
@@ -53,7 +65,7 @@ const Members = () => {
 
         <div className="mt-5">
           {members?.map((member, index) => {
-            return <SingleMember {...member} key={index} />;
+            return <SingleMember {...member.userId} key={index} />;
           })}
         </div>
       </section>

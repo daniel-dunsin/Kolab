@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { FaT, FaTriangleExclamation } from "react-icons/fa6";
-import { verifyAccount } from "../../services/thunks/auth.thunk";
+import { verifyAccount } from "../../services/auth.services";
 import Button from "../../components/UI/Button";
 import { BiCheck, BiLoaderAlt } from "react-icons/bi";
 import VerirfcationEmailModal from "../../components/Modals/VerirfcationEmailModal";
@@ -11,8 +11,7 @@ import Swal from "sweetalert2";
 const VerifyEmail = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [verificationModalOpen, setVerificationModalOpen] =
-    useState<boolean>(false);
+  const [verificationModalOpen, setVerificationModalOpen] = useState<boolean>(false);
   const { token } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,11 +45,7 @@ const VerifyEmail = () => {
 
   return (
     <section className="bg-[#f3f3f3] min-h-screen w-full flex items-center justify-center">
-      {verificationModalOpen && (
-        <VerirfcationEmailModal
-          closeModal={() => setVerificationModalOpen(false)}
-        />
-      )}
+      {verificationModalOpen && <VerirfcationEmailModal closeModal={() => setVerificationModalOpen(false)} />}
       <div className="w-full bg-white max-w-[500px] rounded-md flex items-center flex-col justify-center gap-[.7rem] p-[1rem]">
         {error && !loading && (
           <>
@@ -58,10 +53,7 @@ const VerifyEmail = () => {
               <FaTriangleExclamation className="text-red-500" />
             </span>
             <p>Unable to verify your account</p>
-            <Button
-              text="Resend Email"
-              onClick={() => setVerificationModalOpen(true)}
-            />
+            <Button text="Resend Email" onClick={() => setVerificationModalOpen(true)} />
           </>
         )}
 

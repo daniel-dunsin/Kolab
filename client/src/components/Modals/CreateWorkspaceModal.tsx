@@ -6,19 +6,14 @@ import { RootState } from "../../store";
 import FormRow from "../UI/FormRow";
 import Button from "../UI/Button";
 import { closeCreateWorkspaceModal } from "../../store/handlers.slice";
-import {
-  createWorkspace,
-  getMyWorkspaces,
-} from "../../services/thunks/workspace.thunk";
+import { createWorkspace, getMyWorkspaces } from "../../services/workspace.services";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 const CreateWorkspaceModal = () => {
   const [name, setName] = useState<string>("");
 
-  const { isOpen } = useSelector(
-    (state: RootState) => state.handler.createWorkspaceModal
-  );
+  const { isOpen } = useSelector((state: RootState) => state.handler.createWorkspaceModal);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -59,10 +54,7 @@ const CreateWorkspaceModal = () => {
         </span>
       </header>
 
-      <form
-        className="pt-[1rem] pb-[.5rem] border-t-2 mt-[1rem]"
-        onSubmit={submit}
-      >
+      <form className="pt-[1rem] pb-[.5rem] border-t-2 mt-[1rem]" onSubmit={submit}>
         <FormRow
           label="Enter workspace name"
           placeholder="Enter workspace name"
@@ -73,11 +65,7 @@ const CreateWorkspaceModal = () => {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <Button
-          text="Create Workspace"
-          type="submit"
-          className="mt-4 ml-auto"
-        />
+        <Button text="Create Workspace" type="submit" className="mt-4 ml-auto" />
       </form>
     </ModalOverlay>
   );

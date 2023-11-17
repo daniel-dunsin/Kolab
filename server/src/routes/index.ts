@@ -1,8 +1,12 @@
-import auth from "./auth.routes";
-import workspace from "./workspace.routes";
+import { Router } from 'express';
+import auth from './auth.routes';
+import workspace from './workspace.routes';
+import member from './workspace-members.routes';
 
-const routes = {
-  auth,
-  workspace,
-};
-export default routes;
+const router = Router();
+
+router.use('/auth', auth);
+router.use('/workspace', workspace);
+router.use('/member', member);
+
+export default router;

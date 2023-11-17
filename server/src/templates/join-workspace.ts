@@ -1,3 +1,4 @@
+import settings from "../constants/settings";
 import { IUser } from "../interfaces/models/user.interface";
 import { IWorkspace } from "../interfaces/models/workspace.interface";
 
@@ -87,14 +88,15 @@ export const joinWorkspaceHTML = (
             <b>Kolab</b>.
           </p>
           <p>
-            <b>Workspace description:</b> Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Magnam nemo dignissimos, explicabo molestias tenetur
-            delectus veritatis. Magnam praesentium nesciunt vero eveniet in
-            excepturi error officia?
+            <b>Workspace description:</b> ${workspace.description}
           </p>
-          <p>If you do not have an account, create one and join the workspace</p>
-    
-          <a href="">
+          <p>If you do not have an account, create one at ${
+            settings.frontendUrl + "/signup"
+          } and join the workspace by clicking the button below</p>
+          
+          <i>P.S: you cannot join the workspace without first creating your account</i>
+
+          <a href="${link}">
             <button>Join Workspace</button>
           </a>
     

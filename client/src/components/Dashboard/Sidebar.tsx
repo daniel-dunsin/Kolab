@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Logo from "../UI/Logo";
 import { Squash } from "hamburger-react";
 import { MdDashboard } from "react-icons/md";
@@ -12,35 +12,40 @@ import { BiNote, BiNotepad } from "react-icons/bi";
 import { LuCalendarClock, LuUsers } from "react-icons/lu";
 import { FaCircleExclamation } from "react-icons/fa6";
 import Members from "./dashboard-page/Members";
+import SidebarLink, { Links } from "./SidebarLink";
 
 interface Props {
   isOpened: boolean;
   toggleSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const links = [
+const links: Links[] = [
   {
     text: "Dashboard",
     link: "/dashboard",
     icon: <MdDashboard />,
+    workspaceDependent: false,
     directorDependent: false,
   },
   {
     text: "To-Do",
     link: "/dashboard/todo",
     icon: <BiNotepad />,
+    workspaceDependent: false,
     directorDependent: false,
   },
   {
     text: "Timesheet",
     link: "/dashboard/timesheet",
     icon: <LuCalendarClock />,
+    workspaceDependent: true,
     directorDependent: false,
   },
   {
     text: "Issues Tracker",
     link: "/dashboard/issues",
     icon: <FaCircleExclamation />,
+    workspaceDependent: true,
     directorDependent: false,
   },
 
@@ -48,28 +53,29 @@ const links = [
     text: "Projects",
     link: "/dashboard/projects",
     icon: <BiNote />,
+    workspaceDependent: true,
     directorDependent: false,
   },
   {
     text: "Members",
     link: "/dashboard/members",
     icon: <LuUsers />,
+    workspaceDependent: true,
     directorDependent: false,
   },
   {
     text: "Workspace Settings",
     link: "/dashboard/workspace/settings",
     icon: <BsGear />,
-    directorDependent: false,
+    workspaceDependent: true,
+    directorDependent: true,
   },
 ];
 
 const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
   const { pathname } = useLocation();
 
-  const { currentWorkspace } = useSelector(
-    (state: RootState) => state.workspaces
-  );
+  const { currentWorkspace } = useSelector((state: RootState) => state.workspaces);
   const user = getUserFromLocalStorage();
 
   return (
@@ -88,29 +94,14 @@ const Sidebar = ({ isOpened, toggleSidebar }: Props) => {
 
       <div className="mt-[2rem] flex flex-col gap-y-[.7rem] max-h-[65vh] h-[65vh] overflow-y-scroll">
         {links?.map((link, index) => {
-          return (
-            /**
-             * if the link is director dependent display only if the person is a director
-             */
-            <>
-              {(!link?.directorDependent ||
-                (link?.directorDependent &&
-                  currentWorkspace?._id === user._id)) && (
-                <Link
-                  className={`${
-                    pathname === link?.link
-                      ? "bg-primary text-white"
-                      : "hover:bg-[#0000011d]"
-                  } px-[1rem] py-[10px] rounded-md flex items-center gap-[.8rem]`}
-                  to={link?.link}
-                  key={index}
-                >
-                  <span className="inline-block">{link?.icon}</span>
-                  {link?.text}
-                </Link>
-              )}
-            </>
-          );
+          // if it is workspace dependent, display it if there is a current workspace
+          if (link?.workspaceDependent) {
+            if (currentWorkspace) {
+              return <SidebarLink key={index} {...link} />;
+            } else {
+              return <Fragment key={index}></Fragment>;
+            }
+          } else return <SidebarLink key={index} {...link} />;
         })}
       </div>
 

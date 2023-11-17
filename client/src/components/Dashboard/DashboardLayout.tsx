@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Navbar from "./Navbar";
 import { useDispatch } from "react-redux";
-import { getMyWorkspaces } from "../../services/thunks/workspace.thunk";
+import { getMyWorkspaces } from "../../services/workspace.services";
 
 interface Props {
   pageTitle: string;
@@ -32,9 +32,7 @@ const DashboardLayout = ({ pageTitle, children }: Props) => {
             overflowY: "scroll",
           }}
         >
-          <h1 className="text-[1.2rem] font-bold text-mainBlack lg:hidden">
-            {pageTitle}
-          </h1>
+          <h1 className="text-[1.2rem] font-bold text-mainBlack lg:hidden">{pageTitle}</h1>
 
           <section>{children}</section>
         </section>

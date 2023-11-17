@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { getUserFromLocalStorage } from "../../../utils/tokens";
 import { BiChevronDown, BiChevronUp, BiLogOut } from "react-icons/bi";
 import image from "../../../assets/images/profile-img.jpg";
-import { logOut } from "../../../services/thunks/auth.thunk";
+import { logOut } from "../../../services/auth.services";
 
 function UserInfoTab() {
   const [tabOpened, setTabOpened] = useState<boolean>(false);
@@ -32,9 +32,7 @@ function UserInfoTab() {
 
       <div
         className={`absolute overflow-hidden transition-all duration-300 lg:top-0 top-[105%] lg:left-0 right-0 border-2 bg-white z-[5] rounded-[30px] ${
-          tabOpened
-            ? "w-screen lg:w-[300px] max-w-[300px] h-[200px] border-white"
-            : "w-0 h-0 border-transparent"
+          tabOpened ? "w-screen lg:w-[300px] max-w-[300px] h-[200px] border-white" : "w-0 h-0 border-transparent"
         }`}
       >
         <div className="px-[1rem] py-[1rem] h-full flex justify-between flex-col ">
@@ -49,10 +47,7 @@ function UserInfoTab() {
                 {user?.firstName} {user?.lastName}
               </h2>
 
-              <span
-                className="text-[1.8rem] text-mainBlack cursor-pointer"
-                onClick={() => setTabOpened(false)}
-              >
+              <span className="text-[1.8rem] text-mainBlack cursor-pointer" onClick={() => setTabOpened(false)}>
                 <BiChevronUp />
               </span>
             </div>

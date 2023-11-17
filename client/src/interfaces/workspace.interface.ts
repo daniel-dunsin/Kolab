@@ -1,4 +1,4 @@
-import { IUser } from "./auth.interface";
+import { IUser } from './auth.interface';
 
 export interface IWorkspace {
   name: string;

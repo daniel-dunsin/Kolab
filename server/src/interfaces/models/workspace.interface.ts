@@ -1,17 +1,17 @@
-import { Types } from "mongoose";
-import { IUser } from "./user.interface";
+import { Types } from 'mongoose';
+import { IUser } from './user.interface';
+import { Relations } from '.';
 
 export interface IWorkspace {
   name: string;
   picture?: string;
   description: string;
-  director: string | Types.ObjectId | IUser;
-  users: Array<string | Types.ObjectId | IUser>;
+  director: Relations<IUser>;
   _id: string;
 }
 
 export interface IWorkspaceInvitation {
-  workspace: string | Types.ObjectId | IWorkspace;
+  workspace: Relations<IWorkspace>;
   inviteeEmail: string;
   _id: string;
   createdAt: Date;
