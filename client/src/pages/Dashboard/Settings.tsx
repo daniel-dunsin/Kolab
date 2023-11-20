@@ -1,26 +1,71 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent, useEffect } from "react";
 import DashboardLayout from "../../components/Dashboard/DashboardLayout";
 import TodayDate from "../../components/Dashboard/UI/TodayDate";
 import { BiPencil, BiSave, BiTrash } from "react-icons/bi";
 import FormRow from "../../components/UI/FormRow";
 import Button from "../../components/UI/Button";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
+import { deleteWorkspace, editWorkspace, getMyWorkspaces } from "../../services/workspace.services";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Settings = () => {
+  const currentWorkspace = useSelector((state: RootState) => state.workspaces.currentWorkspace);
   const [newFile, setNewFile] = useState<File | undefined>(undefined);
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const submit = async (e: FormEvent) => {
+    e.preventDefault();
+
+    const data = await dispatch(editWorkspace({ picture: newFile, name, description }));
+
+    if (!data?.error) {
+      await Swal.fire({
+        title: "Edit Workspace",
+        text: "Workspace info edited successfully",
+        timer: 200,
+        showConfirmButton: false,
+        icon: "success",
+      });
+
+      await dispatch(getMyWorkspaces());
+    }
+  };
+
+  const deleteOne = async () => {
+    const data = await dispatch(deleteWorkspace(currentWorkspace?._id));
+    if (!data.error) {
+      await Swal.fire({
+        title: "Delete workspace",
+        text: "Workspace has been deleted successfuly",
+        showConfirmButton: false,
+        timer: 2000,
+        icon: "success",
+      });
+
+      await dispatch(getMyWorkspaces());
+      navigate("/dashboard");
+    }
+  };
+
+  useEffect(() => {
+    if (currentWorkspace) {
+      setName(currentWorkspace?.name);
+      setDescription(currentWorkspace?.description);
+    }
+  }, [currentWorkspace]);
 
   return (
     <DashboardLayout pageTitle="Workspace Settings">
       <TodayDate />
-      <form className="mt-6">
+      <form className="mt-6" onSubmit={submit}>
         <div className="relative mb-4 w-[180px] h-[180px] rounded-full border-[10px] border-white">
           <img
-            src={
-              newFile
-                ? URL.createObjectURL(newFile)
-                : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1H81w4SmKH5DZmIbxU7EB0aMSkNQDoPQA1mRQxf2Y0wMF1NSa7vghbwwKASi1q4NPmNw&usqp=CAU"
-            }
+            src={newFile ? URL.createObjectURL(newFile as File) : currentWorkspace?.picture}
             alt=""
             className="w-full h-full object-cover object-center rounded-full"
           />
@@ -73,11 +118,12 @@ const Settings = () => {
         <div className="flex items-center justify-end flex-wrap flex-col-reverse md:flex-row gap-4 ">
           <Button
             text="Delete Workspace"
-            className="bg-red-500"
+            className="bg-red-500 border-red-500"
             type="button"
             icon={<BiTrash />}
+            onClick={deleteOne}
           />
-          <Button text="Edit Workspace Settings" icon={<BiSave />} />
+          <Button text="Edit Workspace Settings" icon={<BiSave />} type="submit" />
         </div>
       </form>
     </DashboardLayout>

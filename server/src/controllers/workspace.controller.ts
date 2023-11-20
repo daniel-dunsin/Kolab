@@ -48,7 +48,7 @@ const deleteWorkspace = async (req: Request<{ id: string }, {}, {}>, res: Respon
   try {
     const workspace_id = req.params.id;
 
-    await workspaceServices.deleteOne(workspace_id, req.userId as string);
+    await workspaceServices.deleteWorkspace(workspace_id, req.userId as string);
 
     res.status(200).json({ message: 'Workspace deleted successfullly' });
   } catch (error) {

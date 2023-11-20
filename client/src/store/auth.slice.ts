@@ -2,6 +2,7 @@ import { ActionReducerMapBuilder, PayloadAction, createSlice } from '@reduxjs/to
 import { IAuthSlice, IUser } from '../interfaces/auth.interface';
 import { loginUser } from '../services/auth.services';
 import { storeAccessToken, storeUserInLocalStorage } from '../utils/tokens';
+import { editProfile } from '../services/user.services';
 
 const initialState: IAuthSlice = {
   _id: '',
@@ -25,6 +26,12 @@ const authSlice = createSlice({
         return { ...state, ...action.payload.user };
       }
     );
+
+    builder.addCase(editProfile.fulfilled, (state, action: PayloadAction<IUser>) => {
+      storeUserInLocalStorage(action.payload);
+
+      return { ...state, ...action.payload };
+    });
   },
 });
 

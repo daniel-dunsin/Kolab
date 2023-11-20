@@ -9,3 +9,9 @@ export interface SignUpDTO {
   email: string;
   password: string;
 }
+
+export interface EditProfileDTO {
+  firstName: string;
+  lastName: string;
+  profilePicture?: File | string;
+}

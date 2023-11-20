@@ -14,6 +14,7 @@ import Members from "./Dashboard/Members";
 import Issues from "./Dashboard/Issues";
 import SingleIssue from "./Dashboard/SingleIssue";
 import JoinWorkspace from "./JoinWorkspace";
+import EditProfile from "./Dashboard/EditProfile";
 
 const routes = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const routes = createBrowserRouter([
       {
         path: "issues/:id",
         element: <SingleIssue />,
+      },
+      {
+        path: "edit-profile",
+        element: <EditProfile />,
       },
     ],
   },

@@ -71,15 +71,6 @@ const updateOne = async (
   })) as IWorkspace;
 };
 
-const deleteOne = async (_id: Types.ObjectId | string, initiator: Types.ObjectId | string) => {
-  const workspace = await Workspace.findOneAndDelete({
-    _id,
-    director: initiator,
-  });
-
-  if (!workspace) throw new NotFoundError('Workspace does not exist or does not belong to you');
-};
-
 const leave = async (userId: string, workspaceId: string) => {
   const workspace = await Workspace.findById(workspaceId);
 
@@ -165,6 +156,18 @@ const joinWithInvite = async (invite_id: string) => {
   await invitation.deleteOne();
 };
 
+const deleteWorkspace = async (workspaceId: string, userId: string) => {
+  const workspace = await Workspace.findOne({ _id: workspaceId });
+
+  if (!workspace) throw new NotFoundError('Workspace does not exist');
+  if (workspace.director.toString() != userId.toString())
+    throw new BadRequestError("You're not the director of this workspace");
+
+  await WorkspaceMember.deleteMany({ workspaceId });
+  await WorkspaceInvitation.deleteMany({ workspace: workspaceId });
+  await workspace.deleteOne();
+};
+
 const workspaceServices = {
   createWorkspace,
   leave,
@@ -172,7 +175,7 @@ const workspaceServices = {
   joinWithInvite,
   findUserWorkspaces,
   inviteUser,
-  deleteOne,
+  deleteWorkspace,
   updateOne,
   findById,
   findMultiple,

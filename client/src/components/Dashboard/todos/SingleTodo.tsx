@@ -47,7 +47,12 @@ const SingleTodo = ({ text, updatedAt, _id }: Props) => {
           }`}
           onMouseEnter={() => setIsUpdating(true)}
           onMouseLeave={() => setIsUpdating(false)}
-          onBlur={() => (newText === "" ? setText(text) : isDifferent && update())}
+          // onBlur={() => (newText === "" ? setText(text) : isDifferent && update())}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              newText === "" ? setText(text) : isDifferent && update();
+            }
+          }}
         />
       </div>
 

@@ -8,7 +8,7 @@ import Workspaces from "./UI/Workspaces";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { getUserFromLocalStorage } from "../../utils/tokens";
-import { BiNote, BiNotepad } from "react-icons/bi";
+import { BiNote, BiNotepad, BiUser } from "react-icons/bi";
 import { LuCalendarClock, LuUsers } from "react-icons/lu";
 import { FaCircleExclamation } from "react-icons/fa6";
 import Members from "./dashboard-page/Members";
@@ -69,6 +69,13 @@ const links: Links[] = [
     icon: <BsGear />,
     workspaceDependent: true,
     directorDependent: true,
+  },
+  {
+    text: "Edit Profile",
+    link: "/dashboard/edit-profile",
+    icon: <BiUser />,
+    workspaceDependent: false,
+    directorDependent: false,
   },
 ];
 

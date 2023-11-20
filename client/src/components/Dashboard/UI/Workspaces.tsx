@@ -13,27 +13,30 @@ const Workspaces = () => {
 
   const dispatch = useDispatch();
 
-  const { workspaces, currentWorkspace } = useSelector(
-    (state: RootState) => state.workspaces
-  );
+  const { workspaces, currentWorkspace } = useSelector((state: RootState) => state.workspaces);
 
   return (
     <footer className="relative">
-      <div
-        className="flex items-center gap-[.8rem] mt-[1rem] cursor-pointer"
-        onClick={() => setWorkspaceTabOpened(!workspaceTabOpened)}
-      >
-        <span className="text-[1rem] bg-primary w-[30px] h-[30px] rounded-full uppercase flex items-center justify-center">
-          {currentWorkspace?.name?.[0]}
-        </span>
+      {
+        <div
+          className="flex items-center gap-[.8rem] mt-[1rem] cursor-pointer"
+          onClick={() => setWorkspaceTabOpened(!workspaceTabOpened)}
+        >
+          {currentWorkspace && (
+            <>
+              <img
+                src={currentWorkspace?.picture}
+                alt=""
+                className="w-[30px] h-[30px] rounded-full object-center object-cover"
+              />
 
-        <p className="text-mainBlack font-bold  truncate">
-          {currentWorkspace?.name}
-        </p>
-        <span className="text-[1.4rem]">
-          {workspaceTabOpened ? <BiChevronUp /> : <BiChevronDown />}
-        </span>
-      </div>
+              <p className="text-mainBlack font-bold  truncate">{currentWorkspace?.name}</p>
+            </>
+          )}
+          {!currentWorkspace && <p className="text-mainBlack font-bold  truncate">New Workspace</p>}
+          <span className="text-[1.4rem]">{workspaceTabOpened ? <BiChevronUp /> : <BiChevronDown />}</span>
+        </div>
+      }
 
       {/* workspaces list */}
       {workspaceTabOpened && (

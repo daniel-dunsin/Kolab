@@ -4,6 +4,8 @@ import { closePreloader, openPreloader } from '../store/handlers.slice';
 import errorResolver from '../utils/error-resolver';
 import httpInstance from '../axios.config';
 import { deleteAccessToken, deleteUser } from '../utils/tokens';
+import { EditProfileDTO } from '../interfaces/dto/auth.dto';
+import uploadFile from '../utils/upload-file';
 
 export const loginUser: any = createAsyncThunk(
   'auth/loginUser',
