@@ -1,16 +1,15 @@
-import { Types } from "mongoose";
-import jwt from "jsonwebtoken";
-import settings from "../constants/settings";
-import { decode } from "punycode";
+import { Types } from 'mongoose';
+import jwt from 'jsonwebtoken';
+import settings from '../constants/settings';
 
 class JWT {
   private readonly decodeSecret = (): string => {
-    return Buffer.from(settings.accessTokenSecret).toString("ascii");
+    return Buffer.from(settings.accessTokenSecret).toString('ascii');
   };
 
   public sign = async (userId: string | Types.ObjectId): Promise<string> => {
     const token = await jwt.sign({ userId }, this.decodeSecret(), {
-      expiresIn: "30d",
+      expiresIn: '30d',
     });
 
     return token;

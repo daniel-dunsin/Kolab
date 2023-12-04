@@ -6,4 +6,6 @@ export enum Collections {
   workspace_invitation = 'workspace_invitation',
   workspace_member = 'workspace_member',
   todo = 'todo',
+  project = 'project',
+  issue = 'issue',
 }

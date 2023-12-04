@@ -4,6 +4,7 @@ import handlerReducer from './handlers.slice';
 import workspaceReducer from './workspace.slice';
 import membersReducer from './workspace-members.slice';
 import todoReducer from './todo.slice';
+import projectReducer from './project.slice';
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     workspaces: workspaceReducer,
     members: membersReducer,
     todos: todoReducer,
+    projects: projectReducer,
   },
 });
 

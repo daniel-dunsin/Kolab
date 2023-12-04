@@ -4,7 +4,7 @@ import { BiCalendar, BiPlusCircle } from "react-icons/bi";
 import IssuesList from "./IssuesList";
 import TimeInput from "./TimeInputs";
 import {
-  formatTime,
+  formatNumber,
   getDate,
   getTime,
   getTimeDiff,
@@ -57,10 +57,7 @@ const AddTime = () => {
         />
 
         <div className="relative">
-          <div
-            className="flex items-center gap-1 cursor-pointer"
-            onClick={() => setIssuesOpen((prev) => !prev)}
-          >
+          <div className="flex items-center gap-1 cursor-pointer" onClick={() => setIssuesOpen((prev) => !prev)}>
             <BiPlusCircle size={25} className="text-primary " />
             <p className="text-primary ">Issue</p>
           </div>
@@ -72,51 +69,28 @@ const AddTime = () => {
       <div className="flex items-center justify-between flex-wrap gap-4 md:px-4 p-2">
         <div className="flex items-center gap-2 flex-wrap">
           <div className="flex items-center gap-2">
-            <TimeInput
-              time={clockIn}
-              updateTime={setClockIn}
-              chosenDate={today}
-            />{" "}
-            -
-            <TimeInput
-              time={clockOut}
-              updateTime={setClockOut}
-              chosenDate={today}
-            />
+            <TimeInput time={clockIn} updateTime={setClockIn} chosenDate={today} /> -
+            <TimeInput time={clockOut} updateTime={setClockOut} chosenDate={today} />
           </div>
 
           <div className="relative flex items-center gap-2">
             <span className="hover:text-primary cursor-pointer">
-              <BiCalendar
-                size={25}
-                onClick={() => setDatePickerOpen((prev) => !prev)}
-              />
+              <BiCalendar size={25} onClick={() => setDatePickerOpen((prev) => !prev)} />
             </span>
-            <p
-              className="text-[.8rem] font-bold cursor-pointer"
-              onClick={() => setDatePickerOpen((prev) => !prev)}
-            >
+            <p className="text-[.8rem] font-bold cursor-pointer" onClick={() => setDatePickerOpen((prev) => !prev)}>
               {getDate(today)}
             </p>
             {datePickerOpen && (
-              <DatePicker
-                date={today}
-                updateDate={setToday}
-                closeModal={() => setDatePickerOpen(false)}
-              />
+              <DatePicker date={today} updateDate={setToday} closeModal={() => setDatePickerOpen(false)} />
             )}
           </div>
 
           <span className="block p-2 text-[.8rem] font-bold rounded-sm bg-[#f3f3f3] text-mainBlack">
-            {formatTime(difference.hours)}:{formatTime(difference.minutes)}
+            {formatNumber(difference.hours)}:{formatNumber(difference.minutes)}
           </span>
         </div>
 
-        <Button
-          type="submit"
-          text="ADD"
-          className="!min-w-[80px] !rounded-none"
-        />
+        <Button type="submit" text="ADD" className="!min-w-[80px] !rounded-none" />
       </div>
     </section>
   );

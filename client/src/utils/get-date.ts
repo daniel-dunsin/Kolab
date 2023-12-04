@@ -1,25 +1,17 @@
-const days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
+const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
 
 export const getTodaysDate = (): string => {
@@ -44,8 +36,7 @@ export const getDate = (date_input: Date): string => {
   return `${day}, ${date} ${month} ${year}`;
 };
 
-export const formatTime = (text: string | number) =>
-  (text = (text as number) > 9 ? text : `0${text}`);
+export const formatNumber = (text: string | number) => (text = (text as number) > 9 ? text : `0${text}`);
 
 export const getTime = (date_input: Date): string => {
   const date = new Date(date_input);
@@ -77,7 +68,7 @@ export const validateTime = (time: string): string | undefined => {
         extra_hour++;
         time_slice = time_slice - 60;
       }
-      time_slice = formatTime(time_slice);
+      time_slice = formatNumber(time_slice);
 
       return `0${parseInt(time[0]) + extra_hour}:${time_slice}`;
     }
@@ -90,8 +81,8 @@ export const validateTime = (time: string): string | undefined => {
         hour_slice++;
         minute_slice = minute_slice - 60;
       }
-      minute_slice = formatTime(minute_slice);
-      hour_slice = formatTime(hour_slice);
+      minute_slice = formatNumber(minute_slice);
+      hour_slice = formatNumber(hour_slice);
 
       return `${hour_slice}:${minute_slice}`;
     }
@@ -101,11 +92,7 @@ export const validateTime = (time: string): string | undefined => {
   }
 };
 
-export const updateDateWithTime = (
-  date_input: Date,
-  hours: string,
-  minutes: string
-): Date => {
+export const updateDateWithTime = (date_input: Date, hours: string, minutes: string): Date => {
   const date = new Date(date_input);
 
   date.setHours(parseInt(hours));
@@ -114,10 +101,7 @@ export const updateDateWithTime = (
   return date;
 };
 
-export const getTimeDiff = (
-  date1: Date,
-  date2: Date
-): { hours: number; minutes: number } => {
+export const getTimeDiff = (date1: Date, date2: Date): { hours: number; minutes: number } => {
   const time1 = date1.getTime();
   const time2 = date2.getTime();
 
@@ -134,10 +118,7 @@ export const getTimeDiff = (
   return { hours, minutes };
 };
 
-export const incrementByDay = (
-  date_input: Date,
-  days_increment: number
-): Date => {
+export const incrementByDay = (date_input: Date, days_increment: number): Date => {
   const hours_increment = days_increment * 24;
 
   const dateObj = new Date(date_input);

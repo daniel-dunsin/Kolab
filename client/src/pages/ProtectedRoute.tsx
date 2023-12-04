@@ -10,9 +10,7 @@ const ProtectedRoute = () => {
   const dispatch = useDispatch();
 
   if (!user) {
-    dispatch(
-      openErrorModal("You do not have access to this resource, sign in again")
-    );
+    dispatch(openErrorModal("You do not have access to this resource, sign in again"));
     return <Navigate to={"/login"} />;
   }
 
