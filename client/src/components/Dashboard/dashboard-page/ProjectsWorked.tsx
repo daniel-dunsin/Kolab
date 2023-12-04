@@ -14,7 +14,7 @@ const ProjectsWorked = () => {
   return (
     <ContentBox headerSize="large" header="Projects Worked">
       <div className="flex items-center justify-between mt-6 gap-[1rem]">
-        <h1 className="font-bold text-[1.8rem]">{formatNumber(projects.length || 0)}</h1>
+        <h1 className="font-bold text-[1.8rem]">{projects?.length ? formatNumber(projects.length) : "-"}</h1>
         <IconContainer width={60} height={60} icon={<BiFolder />} />
       </div>
     </ContentBox>
