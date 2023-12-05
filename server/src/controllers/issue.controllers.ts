@@ -32,7 +32,7 @@ const getIssues = async (
 const getSingleIssue = async (req: Request<{ id: string }>, res: Response, next: NextFunction) => {
   try {
     const data = await issueServices.getSingleIssue(req.params.id);
-    res.status(200).json({ message: 'Single issue fetched successfully' });
+    res.status(200).json({ message: 'Single issue fetched successfully', data });
   } catch (error) {
     return next(error);
   }

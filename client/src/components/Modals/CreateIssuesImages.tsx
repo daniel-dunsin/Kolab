@@ -20,11 +20,7 @@ const CreateIssuesImagesModal = ({ closeModal, images }: Props) => {
       <header className="flex items-center justify-between">
         <h2 className="font-bold text-[1.1rem] text-mainBlack">Images</h2>
 
-        <span
-          className="text-red-500 text-[1.3rem] cursor-pointer"
-          onClick={closeModal}
-          title="Close Modal"
-        >
+        <span className="text-red-500 text-[1.3rem] cursor-pointer" onClick={closeModal} title="Close Modal">
           <MdClose />
         </span>
       </header>
@@ -34,11 +30,7 @@ const CreateIssuesImagesModal = ({ closeModal, images }: Props) => {
           {allImages?.map((image, index) => {
             return (
               <div className="rounded-md overflow-hidden shadow-md" key={index}>
-                <img
-                  src={URL.createObjectURL(image)}
-                  alt=""
-                  className="w-full h-[120px]"
-                />
+                <img src={URL.createObjectURL(image)} alt="" className="w-full h-[120px]" />
                 <p
                   className="p-2 text-center text-red-700 bg-[#f3f3f3] cursor-pointer"
                   onClick={() => removeImage(index)}

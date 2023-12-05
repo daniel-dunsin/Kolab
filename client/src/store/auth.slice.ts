@@ -3,6 +3,7 @@ import { IAuthSlice, IUser } from '../interfaces/auth.interface';
 import { loginUser } from '../services/auth.services';
 import { storeAccessToken, storeUserInLocalStorage } from '../utils/tokens';
 import { editProfile } from '../services/user.services';
+import { deleteWorkspaceFromLocalStorage } from '../utils/workspace';
 
 const initialState: IAuthSlice = {
   _id: '',
@@ -22,6 +23,7 @@ const authSlice = createSlice({
       (state: IAuthSlice, action: PayloadAction<{ accessToken: string; user: IUser }>) => {
         storeUserInLocalStorage(action.payload.user);
         storeAccessToken(action.payload.accessToken);
+        deleteWorkspaceFromLocalStorage();
 
         return { ...state, ...action.payload.user };
       }

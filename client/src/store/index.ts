@@ -5,6 +5,7 @@ import workspaceReducer from './workspace.slice';
 import membersReducer from './workspace-members.slice';
 import todoReducer from './todo.slice';
 import projectReducer from './project.slice';
+import issueReducer from './issues.slice';
 
 const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ const store = configureStore({
     members: membersReducer,
     todos: todoReducer,
     projects: projectReducer,
+    issues: issueReducer,
   },
 });
 

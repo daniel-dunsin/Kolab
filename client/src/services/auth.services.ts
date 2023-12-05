@@ -6,6 +6,7 @@ import httpInstance from '../axios.config';
 import { deleteAccessToken, deleteUser } from '../utils/tokens';
 import { EditProfileDTO } from '../interfaces/dto/auth.dto';
 import uploadFile from '../utils/upload-file';
+import { deleteWorkspaceFromLocalStorage } from '../utils/workspace';
 
 export const loginUser: any = createAsyncThunk(
   'auth/loginUser',
@@ -87,5 +88,6 @@ export const verifyAccount: any = createAsyncThunk('authSlice/verifyAccount', as
 export const logOut = async () => {
   deleteUser();
   deleteAccessToken();
+  deleteWorkspaceFromLocalStorage();
   window.location.replace('/login');
 };

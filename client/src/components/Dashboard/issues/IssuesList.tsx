@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   TableHeader,
   TableHeaderEntry,
@@ -10,6 +10,11 @@ import {
 import { members } from "../../../pages/Dashboard/Members";
 import { projects } from "../dashboard-page/Projects";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { getIssues } from "../../../services/issue.services";
+import IssueStatusBox from "./IssueStatus";
 
 const headers = [
   {
@@ -30,12 +35,17 @@ const headers = [
   },
 ];
 
-const issues = [
-  { name: "Issue 1", assignedTo: members?.[0], project: projects?.[0] },
-  { name: "Issue 2", assignedTo: members?.[1], project: projects?.[1] },
-];
-
 const IssuesList = () => {
+  const dispatch = useDispatch();
+  const { issues } = useSelector((state: RootState) => state?.issues);
+
+  // no need to do this, the fetching is done in IssuesFilter.tsx
+  // useEffect(() => {
+  //   if (currentWorkspace) {
+  //     dispatch(getIssues());
+  //   }
+  // }, [currentWorkspace]);
+
   return (
     <section className="mt-8">
       <TableLayout>
@@ -49,40 +59,34 @@ const IssuesList = () => {
           })}
         </TableHeader>
         <TableRowsContainer>
-          {issues?.map((issue, index) => (
-            <Link
-              to={`/dashboard/issues/${index}`}
-              key={index}
-              className="hover:bg-[rgba(0,0,0,.1)]"
-            >
-              <TableRow InnerProps={{ className: "!text-[.9rem]" }}>
-                <TableRowEntry width={headers?.[0]?.width}>
-                  {issue?.name}
-                </TableRowEntry>
-                <TableRowEntry width={headers?.[1]?.width}>
-                  {issue?.project?.name}
-                </TableRowEntry>
+          {issues?.length === 0 && <p className="p-2 text-center">No issues at the moment</p>}
+          {issues?.length > 0 &&
+            issues?.map((issue, index) => (
+              <Link to={`/dashboard/issues/${issue?._id}`} key={index} className="hover:bg-[rgba(0,0,0,.1)]">
+                <TableRow InnerProps={{ className: "!text-[.9rem]" }}>
+                  <TableRowEntry width={headers?.[0]?.width}>{issue?.title}</TableRowEntry>
+                  <TableRowEntry width={headers?.[1]?.width}>{issue?.projectId?.name}</TableRowEntry>
 
-                <TableRowEntry width={headers?.[2]?.width}>
-                  {/* Display user info */}
-                  <div className="flex items-center gap-2">
-                    <img
-                      className="w-[30px] h-[30px] object-center object-cover rounded-full"
-                      src={issue.assignedTo.profilePicture}
-                      alt={issue.assignedTo.email}
-                    />
-                    <p>
-                      {issue.assignedTo.firstName} {issue.assignedTo.lastName}
-                    </p>
-                  </div>
-                </TableRowEntry>
+                  <TableRowEntry width={headers?.[2]?.width}>
+                    {/* Display user info */}
+                    <div className="flex items-center gap-2">
+                      <img
+                        className="w-[30px] h-[30px] object-center object-cover rounded-full"
+                        src={issue?.userId?.profilePicture}
+                        alt={issue?.userId?.email}
+                      />
+                      <p>
+                        {issue?.userId?.firstName} {issue?.userId?.lastName}
+                      </p>
+                    </div>
+                  </TableRowEntry>
 
-                <TableRowEntry width={headers?.[3]?.width}>
-                  {issue?.project?.name}
-                </TableRowEntry>
-              </TableRow>
-            </Link>
-          ))}
+                  <TableRowEntry width={headers?.[3]?.width}>
+                    <IssueStatusBox status={issue?.status} />
+                  </TableRowEntry>
+                </TableRow>
+              </Link>
+            ))}
         </TableRowsContainer>
       </TableLayout>
     </section>

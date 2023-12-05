@@ -12,9 +12,12 @@ const createIssue = async (data: CreateIssueDTO): Promise<IIssue> => {
 const getIssues = async (workspaceId: string, userId?: string): Promise<IIssue[]> => {
   const projects = await Project.find({ workspaceId });
 
+  if (projects?.length === 0) return [];
+
   const query = projects.map((project) => ({ projectId: project._id }));
 
   return await Issue.find({ $or: query, ...(userId ? { userId } : {}) })
+    .sort({ status: 1 })
     .populate('userId')
     .populate('projectId');
 };

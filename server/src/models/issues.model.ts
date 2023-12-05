@@ -10,6 +10,7 @@ const IssueSchema = new mongoose.Schema<IIssue>(
     userId: { type: Types.ObjectId, ref: Collections.user, required: true },
     projectId: { type: Types.ObjectId, ref: Collections.project, required: true },
     status: { type: String, enum: Object.values(IssueStatus), default: IssueStatus.pending },
+    assignedBy: { type: Types.ObjectId, ref: Collections.user, required: true },
   },
   { timestamps: true, virtuals: true, toJSON: { virtuals: true }, toObject: { virtuals: true } }
 );
