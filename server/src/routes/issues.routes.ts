@@ -10,5 +10,6 @@ router.post('/', isAuth, validate(CreateIssueInput), issueControllers.createIssu
 router.get('/workspace/:id', isAuth, issueControllers.getIssues);
 router.get('/:id', isAuth, issueControllers.getSingleIssue);
 router.delete('/:id', isAuth, issueControllers.deleteIssue);
+router.put('/:id/status', isAuth, issueControllers.updateIssueStatus);
 
 export default router;

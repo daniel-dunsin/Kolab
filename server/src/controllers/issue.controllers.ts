@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { CreateIssueDTO } from '../interfaces/dto/issues.dto';
 import issueServices from '../services/issue.service';
+import { IssueStatus } from '../interfaces/models/issue.interface';
 
 const createIssue = async (req: Request<{}, {}, CreateIssueDTO>, res: Response, next: NextFunction) => {
   try {
@@ -47,10 +48,24 @@ const deleteIssue = async (req: Request<{ id: string }>, res: Response, next: Ne
   }
 };
 
+const updateIssueStatus = async (
+  req: Request<{ id: string }, {}, { status: IssueStatus }>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    await issueServices.updateIssueStatus(req.params.id, req.body.status);
+    res.status(200).json({ message: 'Status updated' });
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const issueControllers = {
   createIssue,
   deleteIssue,
   getSingleIssue,
   getIssues,
+  updateIssueStatus,
 };
 export default issueControllers;

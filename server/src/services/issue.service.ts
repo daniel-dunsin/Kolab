@@ -1,6 +1,6 @@
 import { NotFoundError } from '../constants/errors';
 import { CreateIssueDTO } from '../interfaces/dto/issues.dto';
-import { IIssue } from '../interfaces/models/issue.interface';
+import { IIssue, IssueStatus } from '../interfaces/models/issue.interface';
 import { IProject } from '../interfaces/models/project.interface';
 import Issue from '../models/issues.model';
 import Project from '../models/project.model';
@@ -31,10 +31,17 @@ const deleteIssue = async (id: string): Promise<void> => {
   if (!issue) throw new NotFoundError('Issue does not exist');
 };
 
+const updateIssueStatus = async (id: string, status: IssueStatus): Promise<IIssue> => {
+  const issue = await Issue.findByIdAndUpdate(id, { status }, { new: true });
+  if (!issue) throw new NotFoundError('Issue does not exist');
+  return issue;
+};
+
 const issueServices = {
   createIssue,
   getSingleIssue,
   getIssues,
   deleteIssue,
+  updateIssueStatus,
 };
 export default issueServices;

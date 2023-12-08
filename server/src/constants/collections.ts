@@ -8,4 +8,5 @@ export enum Collections {
   todo = 'todo',
   project = 'project',
   issue = 'issue',
+  comment = 'comment',
 }
